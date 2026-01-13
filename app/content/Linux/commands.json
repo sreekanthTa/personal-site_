@@ -1,0 +1,2005 @@
+{
+  "title": "Linux content Basics",
+  "date": "2026-01-12",
+  "subheading": "In alphabetical order",
+  "tags": ["linux", "ubuntu", "content", "beginner"],
+  "sections": [
+    {
+      "title": "A",
+      "content": [
+        {
+          "name": "alias",
+          "description": "Create a shortcut for a command, so you can run long commands with a short alias.",
+          "example": [
+            {
+              "command": "alias ll='ls -la'",
+              "input": "",
+              "output": "ll will now list files in long format including hidden files"
+            }
+          ],
+          "options": [
+            {
+              "option": "unalias name",
+              "description": "Removes a previously defined alias. Example: unalias ll removes the 'll' shortcut."
+            }
+          ]
+        },
+        {
+          "name": "arch",
+          "description": "Shows system hardware architecture, for example whether it is 32-bit or 64-bit.",
+          "example": [
+            {
+              "command": "arch",
+              "input": "",
+              "output": "x86_64"
+            }
+          ],
+          "options": []
+        },
+        {
+          "name": "at",
+          "description": "Schedule ad-hoc commands to run at a specific time.",
+          "example": [
+            {
+              "command": "echo \"ls -l\" | at 15:30",
+              "input": "",
+              "output": "Job 1 at Thu Jan 15 15:30:00 2026"
+            }
+          ],
+          "options": [
+            {
+              "option": "-f file",
+              "description": "Read commands to run from a file instead of standard input. Example: at -f myscript.sh 15:30"
+            },
+            {
+              "option": "-m",
+              "description": "Send mail notification when the job finishes."
+            }
+          ]
+        },
+        {
+          "name": "awk",
+          "description": "A powerful text processing language used to scan patterns and manipulate data in files.",
+          "example": [
+            {
+              "command": "awk '{print $1}' file.txt",
+              "input": "apple 10\nbanana 20\ncherry 30",
+              "output": "apple\nbanana\ncherry"
+            },
+            {
+              "command": "awk -F':' '{print $1}' /etc/passwd",
+              "input": "root:x:0:0:root:/root:/bin/bash\nuser:x:1000:1000::/home/user:/bin/bash",
+              "output": "root\nuser"
+            }
+          ],
+          "options": [
+            {
+              "option": "-F",
+              "description": "Set a custom field separator. Example: awk -F':' '{print $1}' file.txt splits columns using ':'"
+            },
+            {
+              "option": "-v",
+              "description": "Assign a variable for use inside awk. Example: awk -v threshold=10 '{if($2>threshold) print $0}' file.txt"
+            },
+            {
+              "option": "-f",
+              "description": "Read an awk program from a file instead of writing inline. Example: awk -f script.awk file.txt"
+            }
+          ]
+        },
+        {
+          "name": "apt",
+          "description": "Ubuntu's package manager, used to install, remove, and update software packages.",
+          "example": [
+            {
+              "command": "sudo apt update",
+              "input": "",
+              "output": "Hit:1 http://archive.ubuntu.com/ubuntu focal InRelease\nReading package lists... Done"
+            },
+            {
+              "command": "sudo apt install htop",
+              "input": "",
+              "output": "Reading package lists... Done\nBuilding dependency tree...\nThe following NEW packages will be installed: htop"
+            }
+          ],
+          "options": [
+            {
+              "option": "install package",
+              "description": "Installs a package. Example: sudo apt install htop"
+            },
+            {
+              "option": "remove package",
+              "description": "Removes a package. Example: sudo apt remove htop"
+            },
+            {
+              "option": "upgrade",
+              "description": "Upgrades all installed packages. Example: sudo apt upgrade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+  "title": "B",
+  "content": [
+    {
+      "name": "basename",
+      "description": "Extract the filename from a full path, optionally removing a suffix.",
+      "example": [
+        {
+          "command": "basename /home/user/file.txt",
+          "input": "",
+          "output": "file.txt"
+        },
+        {
+          "command": "basename /home/user/file.txt .txt",
+          "input": "",
+          "output": "file"
+        }
+      ],
+      "options": [
+        {
+          "option": "-s SUFFIX",
+          "description": "Remove the specified suffix from the filename. Example: basename file.txt .txt returns 'file'."
+        }
+      ]
+    },
+    {
+      "name": "bc",
+      "description": "Basic command-line calculator, supports integer and floating-point math.",
+      "example": [
+        {
+          "command": "echo \"5+3\" | bc",
+          "input": "",
+          "output": "8"
+        },
+        {
+          "command": "echo \"scale=2; 10/3\" | bc",
+          "input": "",
+          "output": "3.33"
+        }
+      ],
+      "options": [
+        {
+          "option": "-l",
+          "description": "Use the math library for floating point operations and functions. Example: echo 's(1)' | bc -l"
+        }
+      ]
+    },
+    {
+      "name": "bg",
+      "description": "Resume a suspended job in the background.",
+      "example": [
+        {
+          "command": "bg %1",
+          "input": "",
+          "output": "Resumes job 1 in the background"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "break",
+      "description": "Exit from a loop prematurely in shell scripts.",
+      "example": [
+        {
+          "command": "for i in 1 2 3; do if [ $i -eq 2 ]; then break; fi; echo $i; done",
+          "input": "",
+          "output": "1"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "builtin",
+      "description": "Run a shell builtin command, bypassing functions or external commands with the same name.",
+      "example": [
+        {
+          "command": "builtin echo Hello",
+          "input": "",
+          "output": "Hello"
+        }
+      ],
+      "options": []
+    }
+  ]
+    },
+    {
+  "title": "C",
+  "content": [
+    {
+      "name": "cal",
+      "description": "Displays a calendar in the terminal.",
+      "example": [
+        {
+          "command": "cal",
+          "input": "",
+          "output": "      January 2026\nSu Mo Tu We Th Fr Sa\n             1  2  3\n..."
+        }
+      ],
+      "options": [
+        {
+          "option": "n/a",
+          "description": "No specific options required for basic usage."
+        }
+      ]
+    },
+    {
+      "name": "case",
+      "description": "Used in shell scripts for conditional branching based on patterns.",
+      "example": [
+        {
+          "command": "case $var in 1) echo One;; 2) echo Two;; esac",
+          "input": "",
+          "output": "Prints 'One' if $var=1, 'Two' if $var=2"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "cat",
+      "description": "Concatenate and display files.",
+      "example": [
+        {
+          "command": "cat file.txt",
+          "input": "",
+          "output": "Displays the contents of file.txt"
+        }
+      ],
+      "options": [
+        {
+          "option": "-n",
+          "description": "Number all output lines. Example: cat -n file.txt"
+        },
+        {
+          "option": "-b",
+          "description": "Number non-blank lines only. Example: cat -b file.txt"
+        }
+      ]
+    },
+    {
+      "name": "cd",
+      "description": "Change the current working directory.",
+      "example": [
+        {
+          "command": "cd /home/user",
+          "input": "",
+          "output": "Changes directory to /home/user"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "chage",
+      "description": "Change user password expiry information.",
+      "example": [
+        {
+          "command": "chage -l username",
+          "input": "",
+          "output": "Shows password aging information for 'username'"
+        }
+      ],
+      "options": [
+        {
+          "option": "-l",
+          "description": "List the password aging info for a user."
+        }
+      ]
+    },
+    {
+      "name": "chgrp",
+      "description": "Change the group ownership of files or directories.",
+      "example": [
+        {
+          "command": "chgrp staff file.txt",
+          "input": "",
+          "output": "Changes group of file.txt to 'staff'"
+        }
+      ],
+      "options": [
+        {
+          "option": "-R",
+          "description": "Apply changes recursively to all files and directories."
+        }
+      ]
+    },
+    {
+      "name": "chmod",
+      "description": "Change file or directory permissions.",
+      "example": [
+        {
+          "command": "chmod 755 file.sh",
+          "input": "",
+          "output": "Sets read/write/execute for owner, read/execute for group and others"
+        }
+      ],
+      "options": [
+        {
+          "option": "-R",
+          "description": "Apply permissions recursively to directories."
+        }
+      ]
+    },
+    {
+      "name": "chown",
+      "description": "Change the owner and/or group of a file or directory.",
+      "example": [
+        {
+          "command": "chown user:staff file.txt",
+          "input": "",
+          "output": "Changes owner to 'user' and group to 'staff'"
+        }
+      ],
+      "options": [
+        {
+          "option": "-R",
+          "description": "Apply ownership changes recursively to directories."
+        }
+      ]
+    },
+    {
+      "name": "chronyc",
+      "description": "Client tool for controlling and monitoring NTP daemon chronyd.",
+      "example": [
+        {
+          "command": "chronyc tracking",
+          "input": "",
+          "output": "Shows current time tracking stats from chronyd"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "clear",
+      "description": "Clears the terminal screen.",
+      "example": [
+        {
+          "command": "clear",
+          "input": "",
+          "output": "Clears terminal content"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "cmp",
+      "description": "Compare two files byte by byte.",
+      "example": [
+        {
+          "command": "cmp file1.txt file2.txt",
+          "input": "",
+          "output": "No output if files are identical; otherwise shows first differing byte"
+        }
+      ],
+      "options": [
+        {
+          "option": "-l",
+          "description": "Print the byte numbers and differing bytes for all differences."
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "description": "Run a command, ignoring shell functions and builtins of the same name.",
+      "example": [
+        {
+          "command": "command --help",
+          "input": "",
+          "output": "Displays help for the 'command' command"
+        }
+      ],
+      "options": [
+        {
+          "option": "--help",
+          "description": "Show help information for a command."
+        }
+      ]
+    },
+    {
+      "name": "cp",
+      "description": "Copy files and directories.",
+      "example": [
+        {
+          "command": "cp file1.txt file2.txt",
+          "input": "",
+          "output": "Copies file1.txt to file2.txt"
+        }
+      ],
+      "options": [
+        {
+          "option": "-r",
+          "description": "Copy directories recursively."
+        },
+        {
+          "option": "-i",
+          "description": "Prompt before overwrite."
+        }
+      ]
+    },
+    {
+      "name": "createrepo",
+      "description": "Create a YUM repository from a directory of RPM packages.",
+      "example": [
+        {
+          "command": "createrepo /path/to/rpms",
+          "input": "",
+          "output": "Generates metadata for the RPM repository"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "crontab",
+      "description": "Schedule recurring tasks using cron.",
+      "example": [
+        {
+          "command": "crontab -l",
+          "input": "",
+          "output": "Lists current user's cron jobs"
+        }
+      ],
+      "options": [
+        {
+          "option": "-l",
+          "description": "List all cron jobs for the current user."
+        },
+        {
+          "option": "-e",
+          "description": "Edit the crontab for the current user."
+        },
+        {
+          "option": "-r",
+          "description": "Remove the current user's crontab."
+        }
+      ]
+    },
+    {
+      "name": "curl",
+      "description": "Transfer data to or from a server using URL syntax.",
+      "example": [
+        {
+          "command": "curl https://example.com",
+          "input": "",
+          "output": "Downloads content from https://example.com"
+        }
+      ],
+      "options": [
+        {
+          "option": "-O",
+          "description": "Save the remote file with the same name locally."
+        },
+        {
+          "option": "-L",
+          "description": "Follow redirects."
+        }
+      ]
+    },
+    {
+      "name": "cut",
+      "description": "Extract sections from each line of a file or input.",
+      "example": [
+        {
+          "command": "cut -d',' -f1 file.csv",
+          "input": "",
+          "output": "Prints the first column of file.csv separated by commas"
+        }
+      ],
+      "options": [
+        {
+          "option": "-d",
+          "description": "Specify the delimiter. Example: -d','"
+        },
+        {
+          "option": "-f",
+          "description": "Select fields. Example: -f1 selects the first column"
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "title": "D",
+  "content": [
+    {
+      "name": "date",
+      "description": "Display or set the system date and time.",
+      "example": [
+        {
+          "command": "date",
+          "input": "",
+          "output": "Mon Jan 13 12:34:56 UTC 2026"
+        }
+      ],
+      "options": [
+        {
+          "option": "+FORMAT",
+          "description": "Customize the output format. Example: date '+%Y-%m-%d %H:%M:%S'"
+        },
+        {
+          "option": "-s",
+          "description": "Set the system date. Example: sudo date -s '2026-01-13 12:00:00'"
+        }
+      ]
+    },
+    {
+      "name": "dd",
+      "description": "Convert and copy files at a low level, often used for creating disk images.",
+      "example": [
+        {
+          "command": "dd if=/dev/sda of=/backup/sda.img bs=1M",
+          "input": "",
+          "output": "Copies /dev/sda to /backup/sda.img with block size 1M"
+        }
+      ],
+      "options": [
+        {
+          "option": "if=",
+          "description": "Input file or device. Example: if=/dev/sda"
+        },
+        {
+          "option": "of=",
+          "description": "Output file or device. Example: of=/backup/sda.img"
+        },
+        {
+          "option": "bs=",
+          "description": "Block size. Example: bs=1M"
+        }
+      ]
+    },
+    {
+      "name": "df",
+      "description": "Display disk space usage of filesystems.",
+      "example": [
+        {
+          "command": "df -h",
+          "input": "",
+          "output": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda1       50G   20G   28G  42% /"
+        }
+      ],
+      "options": [
+        {
+          "option": "-h",
+          "description": "Human-readable sizes (e.g., 1K, 234M, 2G)."
+        },
+        {
+          "option": "-T",
+          "description": "Show filesystem type."
+        }
+      ]
+    },
+    {
+      "name": "diff",
+      "description": "Compare files line by line and show differences.",
+      "example": [
+        {
+          "command": "diff file1.txt file2.txt",
+          "input": "",
+          "output": "Shows line differences between file1.txt and file2.txt"
+        }
+      ],
+      "options": [
+        {
+          "option": "-u",
+          "description": "Show unified format differences. Useful for patches."
+        },
+        {
+          "option": "-c",
+          "description": "Show context format differences."
+        }
+      ]
+    },
+    {
+      "name": "dig",
+      "description": "DNS lookup utility.",
+      "example": [
+        {
+          "command": "dig example.com",
+          "input": "",
+          "output": "Shows DNS information for example.com"
+        }
+      ],
+      "options": [
+        {
+          "option": "+short",
+          "description": "Display only the answer section."
+        },
+        {
+          "option": "@server",
+          "description": "Query a specific DNS server. Example: dig @8.8.8.8 example.com"
+        }
+      ]
+    },
+    {
+      "name": "dmesg",
+      "description": "Display kernel ring buffer messages, useful for debugging hardware issues.",
+      "example": [
+        {
+          "command": "dmesg | tail",
+          "input": "",
+          "output": "Shows the last few kernel messages"
+        }
+      ],
+      "options": [
+        {
+          "option": "-T",
+          "description": "Print human-readable timestamps."
+        },
+        {
+          "option": "--level=LEVEL",
+          "description": "Filter messages by severity level."
+        }
+      ]
+    },
+    {
+      "name": "dmidecode",
+      "description": "Dump computer’s BIOS and hardware information.",
+      "example": [
+        {
+          "command": "sudo dmidecode | less",
+          "input": "",
+          "output": "Displays system BIOS, memory, and hardware information"
+        }
+      ],
+      "options": [
+        {
+          "option": "-t TYPE",
+          "description": "Show only entries of a given type. Example: sudo dmidecode -t memory"
+        },
+        {
+          "option": "--type",
+          "description": "Alias for -t"
+        }
+      ]
+    },
+    {
+      "name": "do",
+      "description": "Used in shell scripts as part of loop syntax (for/while/until).",
+      "example": [
+        {
+          "command": "for i in 1 2 3; do echo $i; done",
+          "input": "",
+          "output": "1\n2\n3"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "du",
+      "description": "Estimate file and directory space usage.",
+      "example": [
+        {
+          "command": "du -h /home/user",
+          "input": "",
+          "output": "Prints size of each folder/file in human-readable format"
+        }
+      ],
+      "options": [
+        {
+          "option": "-h",
+          "description": "Human-readable format (e.g., 1K, 234M)."
+        },
+        {
+          "option": "-s",
+          "description": "Display only total size of each argument."
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "title": "E",
+  "content": [
+    {
+      "name": "echo",
+      "description": "Display a line of text or variables to the standard output.",
+      "example": [
+        {
+          "command": "echo Hello World",
+          "input": "",
+          "output": "Hello World"
+        },
+        {
+          "command": "echo $HOME",
+          "input": "",
+          "output": "/home/user"
+        }
+      ],
+      "options": [
+        {
+          "option": "-n",
+          "description": "Do not output the trailing newline. Example: echo -n Hello"
+        },
+        {
+          "option": "-e",
+          "description": "Enable interpretation of backslash escapes. Example: echo -e \"Hello\\nWorld\""
+        }
+      ]
+    },
+    {
+      "name": "else",
+      "description": "Used in shell scripts as part of an if-else conditional statement.",
+      "example": [
+        {
+          "command": "if [ $x -eq 1 ]; then echo Yes; else echo No; fi",
+          "input": "",
+          "output": "Prints 'Yes' if $x=1, otherwise 'No'"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "ethtool",
+      "description": "Display or change Ethernet device settings.",
+      "example": [
+        {
+          "command": "ethtool eth0",
+          "input": "",
+          "output": "Shows the status and capabilities of interface eth0"
+        }
+      ],
+      "options": [
+        {
+          "option": "-i",
+          "description": "Show driver information. Example: ethtool -i eth0"
+        },
+        {
+          "option": "-s",
+          "description": "Change settings like speed or duplex. Example: sudo ethtool -s eth0 speed 100 duplex full"
+        }
+      ]
+    },
+    {
+      "name": "exit",
+      "description": "Exit from the current shell or script.",
+      "example": [
+        {
+          "command": "exit 0",
+          "input": "",
+          "output": "Exits the shell with status code 0"
+        }
+      ],
+      "options": [
+        {
+          "option": "n/a",
+          "description": "Can be followed by an optional numeric status code. Default is 0."
+        }
+      ]
+    },
+    {
+      "name": "export",
+      "description": "Set environment variables for the current session or child processes.",
+      "example": [
+        {
+          "command": "export PATH=$PATH:/usr/local/bin",
+          "input": "",
+          "output": "Adds /usr/local/bin to the PATH variable for the session"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "env",
+      "description": "Display or run a command in a modified environment.",
+      "example": [
+        {
+          "command": "env",
+          "input": "",
+          "output": "Prints all current environment variables"
+        },
+        {
+          "command": "env VAR=value command",
+          "input": "",
+          "output": "Runs 'command' with VAR set to 'value'"
+        }
+      ],
+      "options": [
+        {
+          "option": "-i",
+          "description": "Start with an empty environment. Example: env -i bash"
+        }
+      ]
+    },
+    {
+      "name": "eval",
+      "description": "Execute arguments as a shell command.",
+      "example": [
+        {
+          "command": "eval echo $HOME",
+          "input": "",
+          "output": "/home/user"
+        }
+      ],
+      "options": []
+    }
+  ]
+},
+{
+  "title": "F",
+  "content": [
+    {
+      "name": "fdisk",
+      "description": "Partition table manipulator for Linux disks.",
+      "example": [
+        {
+          "command": "sudo fdisk -l",
+          "input": "",
+          "output": "Lists all partitions on all disks"
+        }
+      ],
+      "options": [
+        {
+          "option": "-l",
+          "description": "List partition tables for all devices."
+        },
+        {
+          "option": "/dev/sdX",
+          "description": "Specify a particular device to manipulate. Example: sudo fdisk /dev/sda"
+        }
+      ]
+    },
+    {
+      "name": "fg",
+      "description": "Bring a background job to the foreground in the shell.",
+      "example": [
+        {
+          "command": "fg %1",
+          "input": "",
+          "output": "Brings job number 1 to the foreground"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "fi",
+      "description": "Used in shell scripts to close an if statement.",
+      "example": [
+        {
+          "command": "if [ $x -eq 1 ]; then echo Yes; fi",
+          "input": "",
+          "output": "Prints 'Yes' if $x=1"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "find",
+      "description": "Search for files and directories in a directory hierarchy.",
+      "example": [
+        {
+          "command": "find /home/user -name '*.txt'",
+          "input": "",
+          "output": "Lists all .txt files in /home/user and subdirectories"
+        }
+      ],
+      "options": [
+        {
+          "option": "-name",
+          "description": "Search by filename pattern. Example: find / -name 'file.txt'"
+        },
+        {
+          "option": "-type",
+          "description": "Search by file type (f=file, d=directory). Example: find /home -type d"
+        },
+        {
+          "option": "-exec",
+          "description": "Execute a command on each found file. Example: find . -name '*.log' -exec rm {} \\;"
+        }
+      ]
+    },
+    {
+      "name": "firewall-cmd",
+      "description": "Command-line tool for managing firewalld.",
+      "example": [
+        {
+          "command": "sudo firewall-cmd --list-all",
+          "input": "",
+          "output": "Displays the current firewall configuration"
+        }
+      ],
+      "options": [
+        {
+          "option": "--zone=ZONE",
+          "description": "Specify the zone to operate on. Example: sudo firewall-cmd --zone=public --list-all"
+        },
+        {
+          "option": "--add-service=SERVICE",
+          "description": "Add a service to a zone. Example: sudo firewall-cmd --add-service=http"
+        },
+        {
+          "option": "--permanent",
+          "description": "Make changes persistent across reboots."
+        }
+      ]
+    },
+    {
+      "name": "firewall-config",
+      "description": "GUI tool for configuring firewalld.",
+      "example": [
+        {
+          "command": "firewall-config",
+          "input": "",
+          "output": "Opens the firewall configuration GUI"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "for",
+      "description": "Used in shell scripts to create loops.",
+      "example": [
+        {
+          "command": "for i in 1 2 3; do echo $i; done",
+          "input": "",
+          "output": "1\n2\n3"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "free",
+      "description": "Display memory usage statistics.",
+      "example": [
+        {
+          "command": "free -h",
+          "input": "",
+          "output": "Shows memory and swap usage in human-readable format"
+        }
+      ],
+      "options": [
+        {
+          "option": "-h",
+          "description": "Human-readable format."
+        },
+        {
+          "option": "-m",
+          "description": "Display memory in MB."
+        }
+      ]
+    },
+    {
+      "name": "fsck",
+      "description": "Filesystem consistency check and repair.",
+      "example": [
+        {
+          "command": "sudo fsck /dev/sda1",
+          "input": "",
+          "output": "Checks and optionally repairs /dev/sda1 filesystem"
+        }
+      ],
+      "options": [
+        {
+          "option": "-y",
+          "description": "Automatically answer 'yes' to all prompts."
+        },
+        {
+          "option": "-n",
+          "description": "Do not make changes; just report."
+        }
+      ]
+    },
+    {
+      "name": "ftp",
+      "description": "File Transfer Protocol client for transferring files.",
+      "example": [
+        {
+          "command": "ftp ftp.example.com",
+          "input": "",
+          "output": "Connects to ftp.example.com for file transfer"
+        }
+      ],
+      "options": [
+        {
+          "option": "-n",
+          "description": "Suppress auto-login on initial connection."
+        },
+        {
+          "option": "-v",
+          "description": "Enable verbose mode to see all server responses."
+        }
+      ]
+    }
+  ]
+}
+
+,
+{
+  "title": "G",
+  "content": [
+    {
+      "name": "grep",
+      "description": "Search for patterns in files using regular expressions.",
+      "example": [
+        {
+          "command": "grep 'error' /var/log/syslog",
+          "input": "",
+          "output": "Prints all lines containing 'error' in /var/log/syslog"
+        }
+      ],
+      "options": [
+        {
+          "option": "-i",
+          "description": "Ignore case. Example: grep -i 'error' file.txt"
+        },
+        {
+          "option": "-r",
+          "description": "Recursively search directories. Example: grep -r 'TODO' ./"
+        },
+        {
+          "option": "-v",
+          "description": "Invert match (show lines that do NOT match). Example: grep -v 'pass' file.txt"
+        }
+      ]
+    },
+    {
+      "name": "groupadd",
+      "description": "Create a new user group.",
+      "example": [
+        {
+          "command": "sudo groupadd developers",
+          "input": "",
+          "output": "Creates a new group named 'developers'"
+        }
+      ],
+      "options": [
+        {
+          "option": "-g GID",
+          "description": "Specify group ID. Example: sudo groupadd -g 1001 developers"
+        },
+        {
+          "option": "-r",
+          "description": "Create a system group."
+        }
+      ]
+    },
+    {
+      "name": "groupdel",
+      "description": "Delete a user group.",
+      "example": [
+        {
+          "command": "sudo groupdel developers",
+          "input": "",
+          "output": "Deletes the group 'developers'"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "gunzip",
+      "description": "Decompress .gz files.",
+      "example": [
+        {
+          "command": "gunzip file.txt.gz",
+          "input": "",
+          "output": "Decompresses file.txt.gz to file.txt"
+        }
+      ],
+      "options": [
+        {
+          "option": "-c",
+          "description": "Decompress to stdout. Example: gunzip -c file.gz > file.txt"
+        },
+        {
+          "option": "-f",
+          "description": "Force decompression, overwrite existing files."
+        }
+      ]
+    },
+    {
+      "name": "gzip",
+      "description": "Compress files to .gz format.",
+      "example": [
+        {
+          "command": "gzip file.txt",
+          "input": "",
+          "output": "Compresses file.txt to file.txt.gz"
+        }
+      ],
+      "options": [
+        {
+          "option": "-d",
+          "description": "Decompress a file. Example: gzip -d file.txt.gz"
+        },
+        {
+          "option": "-c",
+          "description": "Write output to stdout. Example: gzip -c file.txt > file.txt.gz"
+        },
+        {
+          "option": "-f",
+          "description": "Force compression, overwrite existing files."
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "title": "H",
+  "content": [
+    {
+      "name": "halt",
+      "description": "Shut down the system immediately.",
+      "example": [
+        {
+          "command": "sudo halt",
+          "input": "",
+          "output": "The system will stop all processes and power off."
+        }
+      ],
+      "options": [
+        {
+          "option": "-f",
+          "description": "Force halt without contacting the init system."
+        },
+        {
+          "option": "-p",
+          "description": "Power off after halting."
+        }
+      ]
+    },
+    {
+      "name": "head",
+      "description": "Display the first few lines of a file.",
+      "example": [
+        {
+          "command": "head -n 5 file.txt",
+          "input": "",
+          "output": "Displays the first 5 lines of file.txt"
+        }
+      ],
+      "options": [
+        {
+          "option": "-n N",
+          "description": "Show the first N lines. Example: head -n 10 file.txt"
+        },
+        {
+          "option": "-c N",
+          "description": "Show the first N bytes. Example: head -c 20 file.txt"
+        }
+      ]
+    },
+    {
+      "name": "history",
+      "description": "Show command history in the shell.",
+      "example": [
+        {
+          "command": "history",
+          "input": "",
+          "output": "Displays previously executed commands in the current shell session"
+        }
+      ],
+      "options": [
+        {
+          "option": "-c",
+          "description": "Clear the history. Example: history -c"
+        },
+        {
+          "option": "-w",
+          "description": "Write history to the history file immediately."
+        }
+      ]
+    },
+    {
+      "name": "hostname",
+      "description": "Display or set the system’s hostname.",
+      "example": [
+        {
+          "command": "hostname",
+          "input": "",
+          "output": "Displays the current hostname"
+        },
+        {
+          "command": "sudo hostname myserver",
+          "input": "",
+          "output": "Sets the hostname to 'myserver' temporarily until reboot"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "hostnamectl",
+      "description": "Query and change the system hostname and related settings.",
+      "example": [
+        {
+          "command": "hostnamectl",
+          "input": "",
+          "output": "Displays detailed hostname info including static, transient, and pretty hostname"
+        },
+        {
+          "command": "sudo hostnamectl set-hostname myserver",
+          "input": "",
+          "output": "Sets the static hostname to 'myserver'"
+        }
+      ],
+      "options": [
+        {
+          "option": "set-hostname NAME",
+          "description": "Change the system hostname permanently"
+        },
+        {
+          "option": "status",
+          "description": "Show the current hostname and related info"
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "title": "I",
+  "content": [
+    {
+      "name": "id",
+      "description": "Display user and group information for the current user or a specified user.",
+      "example": [
+        {
+          "command": "id",
+          "input": "",
+          "output": "uid=1000(user) gid=1000(user) groups=1000(user),27(sudo)"
+        },
+        {
+          "command": "id root",
+          "input": "",
+          "output": "uid=0(root) gid=0(root) groups=0(root)"
+        }
+      ],
+      "options": [
+        {
+          "option": "-u",
+          "description": "Display only the user ID. Example: id -u"
+        },
+        {
+          "option": "-g",
+          "description": "Display only the primary group ID. Example: id -g"
+        },
+        {
+          "option": "-G",
+          "description": "Display all group IDs. Example: id -G"
+        }
+      ]
+    },
+    {
+      "name": "if",
+      "description": "Shell keyword used to create conditional statements.",
+      "example": [
+        {
+          "command": "if [ $x -eq 1 ]; then echo Yes; fi",
+          "input": "",
+          "output": "Prints 'Yes' if $x equals 1"
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "ifconfig",
+      "description": "Display or configure network interfaces (deprecated in favor of 'ip').",
+      "example": [
+        {
+          "command": "ifconfig",
+          "input": "",
+          "output": "Shows information about all active network interfaces"
+        }
+      ],
+      "options": [
+        {
+          "option": "interface",
+          "description": "Specify the network interface. Example: ifconfig eth0"
+        },
+        {
+          "option": "up",
+          "description": "Bring an interface up. Example: ifconfig eth0 up"
+        },
+        {
+          "option": "down",
+          "description": "Bring an interface down. Example: ifconfig eth0 down"
+        }
+      ]
+    },
+    {
+      "name": "init",
+      "description": "The parent of all processes; used to change runlevels or system targets.",
+      "example": [
+        {
+          "command": "sudo init 3",
+          "input": "",
+          "output": "Switches the system to runlevel 3 (multi-user mode without GUI)"
+        }
+      ],
+      "options": [
+        {
+          "option": "N",
+          "description": "Change runlevel to N. Example: init 0 shuts down, init 6 reboots."
+        }
+      ]
+    },
+    {
+      "name": "iostat",
+      "description": "Display CPU and I/O statistics for devices and partitions.",
+      "example": [
+        {
+          "command": "iostat",
+          "input": "",
+          "output": "Shows CPU usage and I/O stats for all disks"
+        }
+      ],
+      "options": [
+        {
+          "option": "-x",
+          "description": "Display extended statistics."
+        },
+        {
+          "option": "-d",
+          "description": "Display only device statistics."
+        },
+        {
+          "option": "-k",
+          "description": "Display stats in kilobytes per second."
+        }
+      ]
+    },
+    {
+      "name": "ip",
+      "description": "Show or manipulate routing, devices, policy routing, and tunnels.",
+      "example": [
+        {
+          "command": "ip addr show",
+          "input": "",
+          "output": "Displays all network interfaces and IP addresses"
+        },
+        {
+          "command": "ip link set eth0 up",
+          "input": "",
+          "output": "Brings the interface eth0 up"
+        }
+      ],
+      "options": [
+        {
+          "option": "addr",
+          "description": "Manage IP addresses."
+        },
+        {
+          "option": "link",
+          "description": "Manage network interfaces."
+        },
+        {
+          "option": "route",
+          "description": "Manage routing tables."
+        }
+      ]
+    },
+    {
+      "name": "iptables",
+      "description": "Configure the Linux kernel firewall.",
+      "example": [
+        {
+          "command": "sudo iptables -L",
+          "input": "",
+          "output": "Lists all firewall rules"
+        },
+        {
+          "command": "sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT",
+          "input": "",
+          "output": "Allows incoming SSH connections"
+        }
+      ],
+      "options": [
+        {
+          "option": "-L",
+          "description": "List all rules."
+        },
+        {
+          "option": "-A",
+          "description": "Append a rule to a chain."
+        },
+        {
+          "option": "-D",
+          "description": "Delete a rule from a chain."
+        }
+      ]
+    }
+  ]
+}
+,
+
+  {
+    "title": "I",
+    "content": [
+      {
+        "name": "id",
+        "description": "Display user and group information.",
+        "example": [
+          {"command": "id", "input": "", "output": "uid=1000(user) gid=1000(user) groups=1000(user),27(sudo)"}
+        ],
+        "options": [
+          {"option": "-u", "description": "Show only user ID."},
+          {"option": "-g", "description": "Show only primary group ID."},
+          {"option": "-G", "description": "Show all group IDs."}
+        ]
+      },
+      {
+        "name": "if",
+        "description": "Shell keyword for conditional statements.",
+        "example": [{"command": "if [ $x -eq 1 ]; then echo Yes; fi", "input": "", "output": "Prints 'Yes' if $x=1"}],
+        "options": []
+      },
+      {
+        "name": "ifconfig",
+        "description": "Display or configure network interfaces (deprecated in favor of ip).",
+        "example": [{"command": "ifconfig eth0", "input": "", "output": "Shows details of eth0"}],
+        "options": [{"option": "up/down", "description": "Bring interface up or down"}]
+      },
+      {
+        "name": "init",
+        "description": "Change runlevels or system targets.",
+        "example": [{"command": "sudo init 3", "input": "", "output": "Switches to runlevel 3 (multi-user without GUI)"}],
+        "options": [{"option": "N", "description": "Set runlevel N. E.g., init 0 shuts down."}]
+      },
+      {
+        "name": "iostat",
+        "description": "Display CPU and I/O statistics.",
+        "example": [{"command": "iostat -x", "input": "", "output": "Shows extended I/O stats"}],
+        "options": [{"option": "-x", "description": "Extended stats"}, {"option": "-d", "description": "Device stats only"}]
+      },
+      {
+        "name": "ip",
+        "description": "Manage IP addresses, routes, and interfaces.",
+        "example": [{"command": "ip addr show", "input": "", "output": "Show IP addresses"}],
+        "options": [{"option": "addr", "description": "Manage IP addresses"}, {"option": "link", "description": "Manage interfaces"}, {"option": "route", "description": "Manage routes"}]
+      },
+      {
+        "name": "iptables",
+        "description": "Linux firewall management.",
+        "example": [{"command": "sudo iptables -L", "input": "", "output": "List rules"}],
+        "options": [{"option": "-L", "description": "List rules"}, {"option": "-A", "description": "Append rule"}, {"option": "-D", "description": "Delete rule"}]
+      }
+    ]
+  },
+  {
+    "title": "J",
+    "content": [
+      {
+        "name": "jobs",
+        "description": "List current shell jobs.",
+        "example": [{"command": "jobs", "input": "", "output": "[1]+  Running   sleep 100 &"}],
+        "options": [{"option": "-l", "description": "List PID of jobs"}]
+      }
+    ]
+  },
+  {
+    "title": "K",
+    "content": [
+      {
+        "name": "kill",
+        "description": "Terminate a process by PID or name.",
+        "example": [{"command": "kill 1234", "input": "", "output": "Terminates process 1234"}],
+        "options": [{"option": "-9", "description": "Force kill"}, {"option": "-l", "description": "List all signals"}]
+      },
+      {
+        "name": "killall",
+        "description": "Kill processes by name.",
+        "example": [{"command": "killall firefox", "input": "", "output": "Terminates all firefox processes"}],
+        "options": [{"option": "-9", "description": "Force kill all processes"}]
+      }
+    ]
+  },
+  {
+    "title": "L",
+    "content": [
+      {
+        "name": "last",
+        "description": "Show last logins.",
+        "example": [{"command": "last", "input": "", "output": "Shows recent logins"}],
+        "options": [{"option": "-n N", "description": "Show last N entries"}]
+      },
+      {
+        "name": "less",
+        "description": "View file contents one page at a time.",
+        "example": [{"command": "less file.txt", "input": "", "output": "Displays file.txt content with scrolling"}],
+        "options": [{"option": "+F", "description": "Follow mode (like tail -f)"}]
+      },
+      {
+        "name": "ln",
+        "description": "Create links between files.",
+        "example": [{"command": "ln -s file1.txt file2.txt", "input": "", "output": "Creates a symbolic link file2.txt pointing to file1.txt"}],
+        "options": [{"option": "-s", "description": "Symbolic link"}, {"option": "-f", "description": "Force overwrite"}]
+      },
+      {
+        "name": "locale",
+        "description": "Display locale settings.",
+        "example": [{"command": "locale", "input": "", "output": "Shows current locale environment variables"}],
+        "options": []
+      },
+      {
+        "name": "ls",
+        "description": "List directory contents.",
+        "example": [{"command": "ls -la", "input": "", "output": "Lists all files in long format"}],
+        "options": [{"option": "-l", "description": "Long format"}, {"option": "-a", "description": "Include hidden files"}, {"option": "-h", "description": "Human-readable sizes"}]
+      },
+      {
+        "name": "lvcreate",
+        "description": "Create a logical volume.",
+        "example": [{"command": "sudo lvcreate -L 10G -n lv_data vg0", "input": "", "output": "Creates 10G logical volume lv_data in vg0"}],
+        "options": [{"option": "-L", "description": "Size of LV"}, {"option": "-n", "description": "LV name"}, {"option": "-f", "description": "Force creation"}]
+      },
+      {
+        "name": "lvdisplay",
+        "description": "Display logical volume info.",
+        "example": [{"command": "sudo lvdisplay lv_data", "input": "", "output": "Shows details of lv_data"}],
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "M",
+    "content": [
+      {
+        "name": "mail",
+        "description": "Send or read emails from the command line.",
+        "example": [{"command": "mail -s 'Test' user@example.com", "input": "Hello", "output": "Sends email to user@example.com"}],
+        "options": [{"option": "-s", "description": "Specify subject"}]
+      },
+      {
+        "name": "mailx",
+        "description": "Improved mail client (like mail).",
+        "example": [{"command": "mailx -s 'Hi' user@example.com", "input": "Hello", "output": "Sends email"}],
+        "options": [{"option": "-s", "description": "Subject"}]
+      },
+      {
+        "name": "man",
+        "description": "Display the manual of a command.",
+        "example": [{"command": "man ls", "input": "", "output": "Shows manual for ls"}],
+        "options": []
+      },
+      {
+        "name": "mkdir",
+        "description": "Create directories.",
+        "example": [{"command": "mkdir newdir", "input": "", "output": "Creates newdir"}],
+        "options": [{"option": "-p", "description": "Create parent directories if needed"}]
+      },
+      {
+        "name": "mkfs.xfs",
+        "description": "Create XFS filesystem on a partition.",
+        "example": [{"command": "sudo mkfs.xfs /dev/sdb1", "input": "", "output": "Formats /dev/sdb1 as XFS"}],
+        "options": [{"option": "-f", "description": "Force format"}]
+      },
+      {
+        "name": "mkswap",
+        "description": "Set up a swap area on a device or file.",
+        "example": [{"command": "sudo mkswap /dev/sdb2", "input": "", "output": "Prepares /dev/sdb2 as swap"}],
+        "options": []
+      },
+      {
+        "name": "modprobe",
+        "description": "Load or remove kernel modules.",
+        "example": [{"command": "sudo modprobe nf_conntrack", "input": "", "output": "Loads nf_conntrack module"}],
+        "options": [{"option": "-r", "description": "Remove module"}]
+      },
+      {
+        "name": "more",
+        "description": "View file content page by page.",
+        "example": [{"command": "more file.txt", "input": "", "output": "Displays file content"}],
+        "options": []
+      },
+      {
+        "name": "mount",
+        "description": "Mount a filesystem.",
+        "example": [{"command": "sudo mount /dev/sdb1 /mnt", "input": "", "output": "Mounts /dev/sdb1 to /mnt"}],
+        "options": [{"option": "-t", "description": "Specify filesystem type"}, {"option": "-o", "description": "Mount options"}]
+      },
+      {
+        "name": "mv",
+        "description": "Move or rename files/directories.",
+        "example": [{"command": "mv file1.txt file2.txt", "input": "", "output": "Renames/moves file1.txt to file2.txt"}],
+        "options": [{"option": "-f", "description": "Force overwrite"}, {"option": "-i", "description": "Prompt before overwrite"}]
+      }
+    ]
+  },
+  {
+    "title": "N",
+    "content": [
+      {
+        "name": "netstat",
+        "description": "Display network connections, routing tables, interface stats.",
+        "example": [{"command": "netstat -tulnp", "input": "", "output": "Shows active TCP/UDP connections with PIDs"}],
+        "options": [{"option": "-t", "description": "TCP connections"}, {"option": "-u", "description": "UDP connections"}, {"option": "-l", "description": "Listening sockets"}, {"option": "-p", "description": "Show PID/program name"}, {"option": "-n", "description": "Show numeric addresses"}]
+      },
+      {
+        "name": "nice",
+        "description": "Run a command with a modified scheduling priority.",
+        "example": [{"command": "nice -n 10 long_task.sh", "input": "", "output": "Runs long_task.sh with lower priority"}],
+        "options": [{"option": "-n N", "description": "Set priority level"}]
+      },
+      {
+        "name": "nohup",
+        "description": "Run a command immune to hangups.",
+        "example": [{"command": "nohup long_task.sh &", "input": "", "output": "Runs long_task.sh in background even if terminal closes"}],
+        "options": []
+      },
+      {
+        "name": "nslookup",
+        "description": "Query DNS to obtain domain name or IP address.",
+        "example": [{"command": "nslookup example.com", "input": "", "output": "Returns IP address for example.com"}],
+        "options": []
+      },
+      {
+        "name": "ntpq",
+        "description": "Query NTP server status and statistics.",
+        "example": [{"command": "ntpq -p", "input": "", "output": "Displays peers and NTP offsets"}],
+        "options": [{"option": "-p", "description": "Show NTP peers"}]
+      }
+    ]
+  },
+  {
+    "title": "O",
+    "content": [
+      {
+        "name": "openssl",
+        "description": "Tool for SSL/TLS related operations.",
+        "example": [{"command": "openssl version", "input": "", "output": "Shows OpenSSL version"}],
+        "options": [{"option": "req -new -x509", "description": "Generate self-signed certificate"}]
+      }
+    ]
+  },
+  {
+    "title": "P",
+    "content": [
+      {
+        "name": "passwd",
+        "description": "Change user password.",
+        "example": [{"command": "passwd user", "input": "", "output": "Prompts to change password for 'user'"}],
+        "options": []
+      },
+      {
+        "name": "ping",
+        "description": "Send ICMP echo requests to a host to test connectivity.",
+        "example": [{"command": "ping -c 4 google.com", "input": "", "output": "Sends 4 ICMP packets"}],
+        "options": [{"option": "-c N", "description": "Send N packets"}]
+      },
+      {
+        "name": "pkill",
+        "description": "Kill processes by name.",
+        "example": [{"command": "pkill firefox", "input": "", "output": "Terminates all firefox processes"}],
+        "options": [{"option": "-f", "description": "Match against full command line"}]
+      },
+      {
+        "name": "pvcreate",
+        "description": "Initialize a physical volume for LVM.",
+        "example": [{"command": "sudo pvcreate /dev/sdb", "input": "", "output": "Initializes /dev/sdb for LVM"}],
+        "options": []
+      },
+      {
+        "name": "pvdisplay",
+        "description": "Display information about physical volumes.",
+        "example": [{"command": "sudo pvdisplay /dev/sdb", "input": "", "output": "Shows info of /dev/sdb"}],
+        "options": []
+      },
+      {
+        "name": "pvs",
+        "description": "List physical volumes in LVM.",
+        "example": [{"command": "pvs", "input": "", "output": "Displays all PVs with size and VG"}],
+        "options": []
+      },
+      {
+        "name": "pwd",
+        "description": "Print current working directory.",
+        "example": [{"command": "pwd", "input": "", "output": "/home/user"}],
+        "options": []
+      }
+    ]
+  }
+,
+  {
+    "title": "Q",
+    "content": [
+      {
+        "name": "quota",
+        "description": "Display disk usage and limits for users.",
+        "example": [{"command": "quota -u user", "input": "", "output": "Shows disk usage and limits for 'user'"}],
+        "options": [{"option": "-u", "description": "Show quota for a specific user"}, {"option": "-g", "description": "Show group quota"}]
+      }
+    ]
+  },
+  {
+    "title": "R",
+    "content": [
+      {
+        "name": "reboot",
+        "description": "Reboot the system.",
+        "example": [{"command": "sudo reboot", "input": "", "output": "System will restart"}],
+        "options": [{"option": "-f", "description": "Force reboot without shutdown"}]
+      },
+      {
+        "name": "rm",
+        "description": "Remove files or directories.",
+        "example": [{"command": "rm file.txt", "input": "", "output": "Deletes file.txt"}],
+        "options": [{"option": "-r", "description": "Recursively delete directories"}, {"option": "-f", "description": "Force deletion without prompt"}]
+      },
+      {
+        "name": "rmdir",
+        "description": "Remove empty directories.",
+        "example": [{"command": "rmdir olddir", "input": "", "output": "Removes 'olddir' if empty"}],
+        "options": [{"option": "-p", "description": "Remove parent directories if empty"}]
+      },
+      {
+        "name": "rpm",
+        "description": "RPM package manager for Red Hat-based systems.",
+        "example": [{"command": "rpm -qa", "input": "", "output": "List all installed packages"}],
+        "options": [{"option": "-i", "description": "Install package"}, {"option": "-e", "description": "Erase/remove package"}, {"option": "-q", "description": "Query packages"}]
+      },
+      {
+        "name": "rsync",
+        "description": "Remote and local file synchronization tool.",
+        "example": [{"command": "rsync -av source/ dest/", "input": "", "output": "Synchronizes source directory to dest"}],
+        "options": [{"option": "-a", "description": "Archive mode"}, {"option": "-v", "description": "Verbose"}, {"option": "-z", "description": "Compress during transfer"}]
+      }
+    ]
+  },
+  {
+    "title": "S",
+    "content": [
+      {
+        "name": "scp",
+        "description": "Securely copy files between hosts.",
+        "example": [{"command": "scp file.txt user@remote:/home/user/", "input": "", "output": "Copies file.txt to remote host"}],
+        "options": [{"option": "-r", "description": "Recursively copy directories"}, {"option": "-P", "description": "Specify remote port"}]
+      },
+      {
+        "name": "sed",
+        "description": "Stream editor for text processing.",
+        "example": [{"command": "sed 's/foo/bar/g' file.txt", "input": "", "output": "Replaces all 'foo' with 'bar' in file.txt"}],
+        "options": [{"option": "-i", "description": "Edit file in-place"}, {"option": "-n", "description": "Suppress automatic printing"}]
+      },
+      {
+        "name": "shutdown",
+        "description": "Shutdown or halt the system.",
+        "example": [{"command": "sudo shutdown -h now", "input": "", "output": "Shuts down immediately"}],
+        "options": [{"option": "-h", "description": "Halt/power off"}, {"option": "-r", "description": "Restart"}, {"option": "+m", "description": "Shutdown after m minutes"}]
+      },
+      {
+        "name": "sort",
+        "description": "Sort lines of text files.",
+        "example": [{"command": "sort file.txt", "input": "", "output": "Outputs sorted lines"}],
+        "options": [{"option": "-r", "description": "Reverse sort"}, {"option": "-n", "description": "Sort numerically"}, {"option": "-k", "description": "Sort by specific column"}]
+      },
+      {
+        "name": "ssh",
+        "description": "Secure shell to connect to remote machines.",
+        "example": [{"command": "ssh user@remote", "input": "", "output": "Connects to remote host"}],
+        "options": [{"option": "-p", "description": "Specify remote port"}, {"option": "-i", "description": "Specify private key"}]
+      },
+      {
+        "name": "stat",
+        "description": "Display file or filesystem status.",
+        "example": [{"command": "stat file.txt", "input": "", "output": "Shows file info like size, permissions, timestamps"}],
+        "options": []
+      },
+      {
+        "name": "su",
+        "description": "Switch user or become superuser.",
+        "example": [{"command": "su - root", "input": "", "output": "Switch to root user"}],
+        "options": [{"option": "-", "description": "Login shell of target user"}]
+      },
+      {
+        "name": "sudo",
+        "description": "Execute command as another user, typically root.",
+        "example": [{"command": "sudo apt update", "input": "", "output": "Runs apt update as root"}],
+        "options": [{"option": "-i", "description": "Run shell as root"}, {"option": "-u", "description": "Run command as specific user"}]
+      },
+      {
+        "name": "swapon",
+        "description": "Enable swap space.",
+        "example": [{"command": "sudo swapon /dev/sdb2", "input": "", "output": "Enables swap on /dev/sdb2"}],
+        "options": []
+      },
+      {
+        "name": "swapoff",
+        "description": "Disable swap space.",
+        "example": [{"command": "sudo swapoff /dev/sdb2", "input": "", "output": "Disables swap on /dev/sdb2"}],
+        "options": []
+      },
+      {
+        "name": "systemctl",
+        "description": "Control systemd services and units.",
+        "example": [{"command": "systemctl status sshd", "input": "", "output": "Shows status of sshd service"}],
+        "options": [{"option": "start/stop/restart", "description": "Manage service state"}, {"option": "enable/disable", "description": "Enable or disable service at boot"}]
+      }
+    ]
+  },
+  {
+    "title": "T",
+    "content": [
+      {
+        "name": "tail",
+        "description": "Display last lines of a file.",
+        "example": [{"command": "tail -n 10 file.txt", "input": "", "output": "Shows last 10 lines"}],
+        "options": [{"option": "-f", "description": "Follow file as it grows"}, {"option": "-n", "description": "Specify number of lines"}]
+      },
+      {
+        "name": "tar",
+        "description": "Archive files into tarballs.",
+        "example": [{"command": "tar -cvf archive.tar folder/", "input": "", "output": "Creates archive.tar with folder content"}],
+        "options": [{"option": "-c", "description": "Create archive"}, {"option": "-x", "description": "Extract archive"}, {"option": "-v", "description": "Verbose"}, {"option": "-f", "description": "Archive filename"}]
+      },
+      {
+        "name": "tcpdump",
+        "description": "Capture network packets.",
+        "example": [{"command": "sudo tcpdump -i eth0", "input": "", "output": "Captures packets on eth0"}],
+        "options": [{"option": "-i", "description": "Specify interface"}, {"option": "-n", "description": "Do not resolve names"}, {"option": "-c", "description": "Capture N packets"}]
+      },
+      {
+        "name": "tee",
+        "description": "Read from stdin and write to stdout and files.",
+        "example": [{"command": "echo 'Hello' | tee file.txt", "input": "", "output": "Writes 'Hello' to stdout and file.txt"}],
+        "options": [{"option": "-a", "description": "Append to file instead of overwrite"}]
+      },
+      {
+        "name": "telnet",
+        "description": "Connect to remote hosts using Telnet protocol.",
+        "example": [{"command": "telnet example.com 23", "input": "", "output": "Connects to example.com on port 23"}],
+        "options": []
+      },
+      {
+        "name": "touch",
+        "description": "Create empty files or update timestamps.",
+        "example": [{"command": "touch newfile.txt", "input": "", "output": "Creates newfile.txt"}],
+        "options": [{"option": "-c", "description": "Do not create if not exists"}, {"option": "-a", "description": "Change only access time"}]
+      },
+      {
+        "name": "traceroute",
+        "description": "Trace route packets take to a host.",
+        "example": [{"command": "traceroute google.com", "input": "", "output": "Displays path to google.com"}],
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "U",
+    "content": [
+      {
+        "name": "umount",
+        "description": "Unmount a filesystem.",
+        "example": [{"command": "sudo umount /mnt", "input": "", "output": "Unmounts /mnt"}],
+        "options": [{"option": "-l", "description": "Lazy unmount"}]
+      },
+      {
+        "name": "uname",
+        "description": "Display system information.",
+        "example": [{"command": "uname -a", "input": "", "output": "Displays kernel name, version, and architecture"}],
+        "options": [{"option": "-r", "description": "Kernel release"}, {"option": "-s", "description": "Kernel name"}, {"option": "-m", "description": "Machine hardware name"}]
+      },
+      {
+        "name": "uniq",
+        "description": "Filter duplicate lines in a file.",
+        "example": [{"command": "uniq file.txt", "input": "", "output": "Displays unique lines"}],
+        "options": [{"option": "-c", "description": "Prefix lines with count"}]
+      },
+      {
+        "name": "uptime",
+        "description": "Show system uptime and load averages.",
+        "example": [{"command": "uptime", "input": "", "output": "12:00:00 up 2 days, 3 users, load average: 0.15, 0.10, 0.05"}],
+        "options": []
+      },
+      {
+        "name": "useradd",
+        "description": "Add a new user.",
+        "example": [{"command": "sudo useradd newuser", "input": "", "output": "Creates new user 'newuser'"}],
+        "options": [{"option": "-m", "description": "Create home directory"}, {"option": "-s", "description": "Specify shell"}]
+      },
+      {
+        "name": "userdel",
+        "description": "Delete a user.",
+        "example": [{"command": "sudo userdel olduser", "input": "", "output": "Deletes 'olduser'"}],
+        "options": [{"option": "-r", "description": "Remove home directory"}]
+      },
+      {
+        "name": "usermod",
+        "description": "Modify user account properties.",
+        "example": [{"command": "sudo usermod -aG sudo newuser", "input": "", "output": "Adds 'newuser' to sudo group"}],
+        "options": [{"option": "-aG", "description": "Append user to supplementary groups"}]
+      }
+    ]
+  },
+  {
+    "title": "V",
+    "content": [
+      {
+        "name": "vgcreate",
+        "description": "Create a volume group in LVM.",
+        "example": [{"command": "sudo vgcreate vg0 /dev/sdb1 /dev/sdb2", "input": "", "output": "Creates VG vg0 with two physical volumes"}],
+        "options": []
+      },
+      {
+        "name": "vgdisplay",
+        "description": "Display information about volume groups.",
+        "example": [{"command": "sudo vgdisplay vg0", "input": "", "output": "Shows details of vg0"}],
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "W",
+    "content": [
+      {
+        "name": "vi",
+        "description": "Text editor in terminal.",
+        "example": [{"command": "vi file.txt", "input": "", "output": "Open file.txt in vi editor"}],
+        "options": []
+      },
+      {
+        "name": "w",
+        "description": "Show who is logged in and what they are doing.",
+        "example": [{"command": "w", "input": "", "output": "Displays logged-in users and processes"}],
+        "options": []
+      },
+      {
+        "name": "wall",
+        "description": "Send a message to all logged-in users.",
+        "example": [{"command": "wall 'System maintenance in 10 mins'", "input": "", "output": "Broadcasts message"}],
+        "options": []
+      },
+      {
+        "name": "wc",
+        "description": "Count lines, words, and characters.",
+        "example": [{"command": "wc file.txt", "input": "", "output": "Prints line, word, and character count"}],
+        "options": [{"option": "-l", "description": "Count lines only"}, {"option": "-w", "description": "Count words only"}, {"option": "-c", "description": "Count characters only"}]
+      },
+      {
+        "name": "which",
+        "description": "Locate a command executable in PATH.",
+        "example": [{"command": "which ls", "input": "", "output": "/bin/ls"}],
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "X",
+    "content": [
+      {
+        "name": "xfs_repair",
+        "description": "Repair XFS filesystems.",
+        "example": [{"command": "sudo xfs_repair /dev/sdb1", "input": "", "output": "Repairs XFS filesystem on /dev/sdb1"}],
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "Y",
+    "content": [
+      {
+        "name": "yum",
+        "description": "Package manager for Red Hat-based systems.",
+        "example": [{"command": "sudo yum install htop", "input": "", "output": "Installs htop package"}],
+        "options": [{"option": "install", "description": "Install package"}, {"option": "remove", "description": "Remove package"}, {"option": "update", "description": "Update packages"}]
+      }
+    ]
+  },
+  {
+    "title": "Z",
+    "content": [
+      {
+        "name": "zip",
+        "description": "Compress files into a zip archive.",
+        "example": [{"command": "zip archive.zip file1 file2", "input": "", "output": "Creates archive.zip containing file1 and file2"}],
+        "options": [{"option": "-r", "description": "Recursively include directories"}]
+      },
+      {
+        "name": "zcat",
+        "description": "View compressed files without uncompressing.",
+        "example": [{"command": "zcat file.txt.gz", "input": "", "output": "Displays contents of file.txt.gz"}],
+        "options": []
+      },
+      {
+        "name": "zgrep",
+        "description": "Search inside compressed files.",
+        "example": [{"command": "zgrep 'pattern' file.txt.gz", "input": "", "output": "Searches 'pattern' inside compressed file"}],
+        "options": []
+      }
+    ]
+  }
+
+
+
+
+  ]
+}
