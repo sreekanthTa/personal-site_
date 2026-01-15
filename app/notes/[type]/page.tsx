@@ -3,14 +3,15 @@ import { use } from "react";
 import styles from './page.module.css';
 
 export default async function NotePage({ params, searchParams }: any) {
-    const resolvedParams = await params; // unwrap the promise
-    const resolvedSearchParams = await searchParams;
-    const level = await resolvedSearchParams.level;
+  try{
+
+  const resolvedParams = await params; // unwrap the promise
+  const resolvedSearchParams = await searchParams;
+  const level = await resolvedSearchParams.level;
 
   const { type } = resolvedParams; // destructure the dynamic param
 
-
-  const data = await readJson(`app/content/${type}/${level}.json`);
+  const data = await readJson(`content/${type}/${level}.json`);
   const { title, subheading, sections } = data;
 
   return (
@@ -19,7 +20,7 @@ export default async function NotePage({ params, searchParams }: any) {
       <div className={styles.subtitle}>{subheading}</div>
 
       <div className={styles.sections}>
-        {sections?.map((section: any,i:any) => (
+        {sections?.map((section: any, i: any) => (
           <div key={i} className={styles.section}>
             <div className={styles.sectionTitle}>{section.title}</div>
 
@@ -33,15 +34,15 @@ export default async function NotePage({ params, searchParams }: any) {
                     <strong>Example:</strong>
                     <div className={styles.codeBlock}>
                       {
-                        cmd?.example?.map((e:any, i:any) => {
+                        cmd?.example?.map((e: any, i: any) => {
                           return <div key={i}>
-                           
+
                             {e?.input && (
                               <div>
-                                <span className={styles.codeLabel}>Input:</span> <br/>{e?.input}
+                                <span className={styles.codeLabel}>Input:</span> <br />{e?.input}
                               </div>
                             )}
-                             {e?.command && (
+                            {e?.command && (
                               <div>
                                 <span className={styles.codeLabel}>$</span> {e?.command}
                               </div>
@@ -49,10 +50,10 @@ export default async function NotePage({ params, searchParams }: any) {
 
                             {e?.output && (
                               <div>
-                                <span className={styles.codeLabel}>Output:</span> <br/>{e?.output}
+                                <span className={styles.codeLabel}>Output:</span> <br />{e?.output}
                               </div>
                             )}
-                          
+
                           </div>
                         })
                       }
@@ -61,22 +62,28 @@ export default async function NotePage({ params, searchParams }: any) {
                   </div>
                 )}
 
-{cmd?.options?.length > 0 && (
-  <div className={styles.commandOptions}>
-    <strong>Options:</strong>
-    <ul>
-      {cmd.options.map((opt:any, i:any) => (
-        <li key={i}>
-          <strong>{opt.option}:</strong> {opt.description}
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
+                {cmd?.options?.length > 0 && (
+                  <div className={styles.commandOptions}>
+                    <strong>Options:</strong>
+                    <ul>
+                      {cmd.options.map((opt: any, i: any) => (
+                        <li key={i}>
+                          <strong>{opt.option}:</strong> {opt.description}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         ))}
       </div>
     </div>
-  );}
+  );
+  }
+  catch(err){
+    console.error("error occure while loading note:", JSON.stringify(err));
+    return  <h1 className={styles.title}>Error Loading Note</h1>
+  }
+}
