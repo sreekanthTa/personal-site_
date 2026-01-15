@@ -1,7 +1,7 @@
 import { readJson } from "@/app/common/gray_matter";
 import { use } from "react";
 import styles from './page.module.css';
-
+import path from "path";
 export default async function NotePage({ params, searchParams }: any) {
   try{
 
@@ -11,7 +11,9 @@ export default async function NotePage({ params, searchParams }: any) {
 
   const { type } = resolvedParams; // destructure the dynamic param
 
-  const data = await readJson(`content/${type}/${level}.json`);
+  const filePath = path.join(process.cwd(), `content/${type}/${level}.json`);
+
+  const data = await readJson(filePath);
   const { title, subheading, sections } = data;
 
   return (
