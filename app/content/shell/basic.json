@@ -1,0 +1,210 @@
+{
+  "title": "Shell Scripting Basics",
+  "date": "2026-01-15",
+  "subheading": "In alphabetical order",
+  "tags": ["shell", "bash", "interview", "basic", "linux"],
+  "sections": [
+    {
+      "title": "C",
+      "content": [
+        {
+          "name": "Comments",
+          "description": "Use # for single-line comments.",
+          "example": [
+            {
+              "command": "# This is a comment",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "B",
+      "content": [
+        {
+          "name": "Basic Commands",
+          "description": "Common shell commands used in scripts.",
+          "example": [
+            {
+              "command": "ls -la",
+              "input": "",
+              "output": "Lists all files including hidden files"
+            },
+            {
+              "command": "pwd",
+              "input": "",
+              "output": "Prints current directory path"
+            },
+            {
+              "command": "cat file.txt",
+              "input": "",
+              "output": "Displays file content"
+            },
+            {
+              "command": "basename /home/user/file.txt",
+              "input": "",
+              "output": "file.txt"
+            },
+            {
+              "command": "dirname /home/user/file.txt",
+              "input": "",
+              "output": "/home/user"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "C",
+      "content": [
+        {
+          "name": "Conditionals",
+          "description": "Use if, elif, else, and test operators to control flow.",
+          "example": [
+            {
+              "command": "if [ $a -eq 1 ]; then echo Yes; else echo No; fi",
+              "input": "a=1",
+              "output": "Yes"
+            },
+            {
+              "command": "if [ -f file.txt ]; then echo File exists; fi",
+              "input": "",
+              "output": "File exists"
+            }
+          ],
+          "options": [
+            {
+              "option": "-f filename",
+              "description": "Check if file exists and is regular"
+            },
+            {
+              "option": "-d directory",
+              "description": "Check if directory exists"
+            },
+            {
+              "option": "-z string",
+              "description": "Check if string is empty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "F",
+      "content": [
+        {
+          "name": "Functions",
+          "description": "Reusable blocks of code.",
+          "example": [
+            {
+              "command": "greet() { echo Hello $1; }; greet World",
+              "input": "",
+              "output": "Hello World"
+            }
+          ],
+          "options": [
+            {
+              "option": "return",
+              "description": "Return status code from function"
+            },
+            {
+              "option": "local var",
+              "description": "Variable local to function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "I",
+      "content": [
+        {
+          "name": "Input/Output",
+          "description": "Read input and print output.",
+          "example": [
+            {
+              "command": "read name; echo $name",
+              "input": "John",
+              "output": "John"
+            },
+            {
+              "command": "echo \"Hello World\"",
+              "input": "",
+              "output": "Hello World"
+            }
+          ],
+          "options": [
+            {
+              "option": "-n",
+              "description": "Do not print newline"
+            },
+            {
+              "option": "-e",
+              "description": "Enable interpretation of backslash escapes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "V",
+      "content": [
+        {
+          "name": "Variables",
+          "description": "Store values in a variable. Variables are case-sensitive.",
+          "example": [
+            {
+              "command": "name='John'; echo $name",
+              "input": "",
+              "output": "John"
+            },
+            {
+              "command": "readonly pi=3.14; echo $pi",
+              "input": "",
+              "output": "3.14"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "E",
+      "content": [
+        {
+          "name": "Exit Status",
+          "description": "Check if commands succeed or fail.",
+          "example": [
+            {
+              "command": "ls /notexist; echo $?",
+              "input": "",
+              "output": "2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "C",
+      "content": [
+        {
+          "name": "Command Substitution",
+          "description": "Use output of a command as a variable.",
+          "example": [
+            {
+              "command": "today=$(date +%F); echo $today",
+              "input": "",
+              "output": "2026-01-15"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,418 @@
+{
+  "title": "Advanced Shell Scripting",
+  "date": "2026-01-15",
+  "subheading": "In alphabetical order",
+  "tags": ["shell", "bash", "interview", "advanced", "linux"],
+  "sections": [
+    {
+      "title": "A",
+      "content": [
+        {
+          "name": "Advanced Commands",
+          "description": "Common commands for text processing and scripting used in advanced shell scripting.",
+          "example": [
+            {
+              "command": "awk '{print $1}' file.txt",
+              "input": "apple 10\nbanana 20",
+              "output": "apple\nbanana"
+            },
+            {
+              "command": "grep -i 'pattern' file.txt",
+              "input": "",
+              "output": "Searches for 'pattern' ignoring case"
+            },
+            {
+              "command": "sed 's/foo/bar/g' file.txt",
+              "input": "",
+              "output": "Replaces all 'foo' with 'bar'"
+            },
+            {
+              "command": "xargs -n 1 echo < list.txt",
+              "input": "",
+              "output": "Prints each line from list.txt"
+            },
+            {
+              "command": "cut -d ' ' -f1 file.txt",
+              "input": "",
+              "output": "Extracts first column from file.txt"
+            },
+            {
+              "command": "sort file.txt | uniq",
+              "input": "",
+              "output": "Sorts file.txt and removes duplicate lines"
+            }
+          ],
+          "options": []
+        },
+        {
+          "name": "Arithmetic & expr",
+          "description": "Perform calculations using $(( )) or expr.",
+          "example": [
+            {
+              "command": "x=$((5 + 3)); echo $x",
+              "input": "",
+              "output": "8"
+            },
+            {
+              "command": "expr 10 / 3",
+              "input": "",
+              "output": "3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "name": "Arrays",
+          "description": "Store multiple values in indexed or associative arrays.",
+          "example": [
+            {
+              "command": "arr=(one two three); echo ${arr[1]}",
+              "input": "",
+              "output": "two"
+            },
+            {
+              "command": "declare -A colors; colors[red]='#FF0000'; echo ${colors[red]}",
+              "input": "",
+              "output": "#FF0000"
+            }
+          ],
+          "options": [
+            {
+              "option": "${arr[@]}",
+              "description": "All elements in an array"
+            },
+            {
+              "option": "${#arr[@]}",
+              "description": "Length of the array"
+            }
+          ]
+        },
+        {
+          "name": "Arguments & Parameters",
+          "description": "Use positional parameters and special variables in scripts.",
+          "example": [
+            {
+              "command": "echo $1 $2",
+              "input": "",
+              "output": "Prints first and second arguments passed to the script"
+            },
+            {
+              "command": "echo $@",
+              "input": "",
+              "output": "Prints all arguments passed"
+            },
+            {
+              "command": "shift; echo $1",
+              "input": "",
+              "output": "Removes first argument and prints next one"
+            }
+          ],
+          "options": [
+            {
+              "option": "$0",
+              "description": "Name of the script"
+            },
+            {
+              "option": "$#",
+              "description": "Number of arguments"
+            },
+            {
+              "option": "$?",
+              "description": "Exit status of last command"
+            },
+            {
+              "option": "$$",
+              "description": "PID of the current shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "D",
+      "content": [
+        {
+          "name": "Debugging & Shell Options",
+          "description": "Trace scripts and enforce safe execution.",
+          "example": [
+            {
+              "command": "bash -x script.sh",
+              "input": "",
+              "output": "Prints commands as executed"
+            },
+            {
+              "command": "set -euxo pipefail",
+              "input": "",
+              "output": "Exit on errors, unset variables, or failed pipelines; verbose execution"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "F",
+      "content": [
+        {
+          "name": "File Descriptors & Redirection",
+          "description": "Advanced I/O redirection and file descriptor manipulation.",
+          "example": [
+            {
+              "command": "exec 3>output.txt; echo 'Hello' >&3; exec 3>&-",
+              "input": "",
+              "output": "Writes 'Hello' to output.txt via FD 3"
+            },
+            {
+              "command": "command >file 2>&1",
+              "input": "",
+              "output": "Redirect stdout and stderr to file"
+            }
+          ],
+          "options": [
+            {
+              "option": ">&",
+              "description": "Redirect one file descriptor to another"
+            },
+            {
+              "option": ">>",
+              "description": "Append output to a file instead of overwriting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "H",
+      "content": [
+        {
+          "name": "Here Documents & Here Strings",
+          "description": "Provide multi-line input to commands.",
+          "example": [
+            {
+              "command": "cat <<EOF\nHello\nWorld\nEOF",
+              "input": "",
+              "output": "Hello\nWorld"
+            },
+            {
+              "command": "grep 'apple' <<< 'apple banana cherry'",
+              "input": "",
+              "output": "apple"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "J",
+      "content": [
+        {
+          "name": "Job Control",
+          "description": "Manage background and foreground jobs.",
+          "example": [
+            {
+              "command": "sleep 30 &",
+              "input": "",
+              "output": "Runs sleep in background"
+            },
+            {
+              "command": "jobs",
+              "input": "",
+              "output": "Lists background jobs"
+            },
+            {
+              "command": "fg %1",
+              "input": "",
+              "output": "Brings job 1 to foreground"
+            },
+            {
+              "command": "bg %1",
+              "input": "",
+              "output": "Resumes job 1 in background"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "O",
+      "content": [
+        {
+          "name": "One-liners & Interview Tricks",
+          "description": "Common patterns asked in interviews.",
+          "example": [
+            {
+              "command": "find . -type f -name '*.txt' | xargs grep 'pattern'",
+              "input": "",
+              "output": "Search 'pattern' in all .txt files recursively"
+            },
+            {
+              "command": "for file in *.log; do mv \"$file\" \"$file.bak\"; done",
+              "input": "",
+              "output": "Rename all .log files to .log.bak"
+            },
+            {
+              "command": "diff <(sort file1) <(sort file2)",
+              "input": "",
+              "output": "Compare two files ignoring line order"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "P",
+      "content": [
+        {
+          "name": "Process Substitution",
+          "description": "Use <(...) or >(...) to treat command output or input as files.",
+          "example": [
+            {
+              "command": "diff <(ls dir1) <(ls dir2)",
+              "input": "",
+              "output": "Shows differences between two directories"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "Q",
+      "content": [
+        {
+          "name": "Quoting & Expansions",
+          "description": "Handle variables, spaces, special characters, and expansions.",
+          "example": [
+            {
+              "command": "VAR='Hello World'; echo \"$VAR\"",
+              "input": "",
+              "output": "Hello World"
+            },
+            {
+              "command": "echo ${VAR:-default}",
+              "input": "",
+              "output": "Print VAR if set; otherwise default"
+            }
+          ],
+          "options": [
+            {
+              "option": "single quotes ''",
+              "description": "Literal string; no variable expansion"
+            },
+            {
+              "option": "double quotes \"\"",
+              "description": "Allows variable and command expansion"
+            },
+            {
+              "option": "backslash \\",
+              "description": "Escape next character"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "R",
+      "content": [
+        {
+          "name": "Recursive Functions",
+          "description": "Call a function from within itself.",
+          "example": [
+            {
+              "command": "factorial() { if [ $1 -le 1 ]; then echo 1; else local temp=$(( $1 - 1 )); echo $(( $1 * $(factorial $temp) )); fi }; factorial 5",
+              "input": "",
+              "output": "120"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "S",
+      "content": [
+        {
+          "name": "Signals & Traps",
+          "description": "Catch and handle signals like SIGINT or SIGTERM.",
+          "example": [
+            {
+              "command": "trap 'echo Cleanup; exit' SIGINT SIGTERM",
+              "input": "Ctrl+C",
+              "output": "Prints 'Cleanup' and exits"
+            }
+          ],
+          "options": []
+        },
+        {
+          "name": "Subshells",
+          "description": "Run commands in a separate shell using parentheses.",
+          "example": [
+            {
+              "command": "(cd /tmp; ls)",
+              "input": "",
+              "output": "Lists /tmp contents; current directory unchanged"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "U",
+      "content": [
+        {
+          "name": "Utilities for Scripting",
+          "description": "Common system commands used in advanced scripts for monitoring and remote execution.",
+          "example": [
+            {
+              "command": "ssh user@host 'uptime'",
+              "input": "",
+              "output": "Check uptime on a remote machine"
+            },
+            {
+              "command": "df -h",
+              "input": "",
+              "output": "Displays disk usage in human-readable format"
+            },
+            {
+              "command": "du -sh folder",
+              "input": "",
+              "output": "Displays size of a folder"
+            },
+            {
+              "command": "tail -f /var/log/syslog",
+              "input": "",
+              "output": "Continuously monitor log file"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "C",
+      "content": [
+        {
+          "name": "Cron & Scheduling",
+          "description": "Automate tasks using crontab with proper fields and syntax.",
+          "example": [
+            {
+              "command": "crontab -l",
+              "input": "",
+              "output": "List current user cron jobs"
+            },
+            {
+              "command": "0 2 * * * /home/user/backup.sh",
+              "input": "",
+              "output": "Runs backup.sh daily at 2 AM"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ]
+}
