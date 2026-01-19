@@ -1,0 +1,277 @@
+{
+  "title": "Docker Scenarios, Security & Best Practices",
+  "date": "2026-01-19",
+  "subheading": "In alphabetical order",
+  "tags": ["docker", "interview", "scenarios", "security", "best-practices"],
+  "sections": [
+    {
+      "title": "A",
+      "content": [
+        {
+          "name": "Application Scaling",
+          "description": "Scenario: You need to scale a web app horizontally. Use Docker Compose or Swarm services with replicas.",
+          "example": [
+            {
+              "command": "docker service scale web=5",
+              "input": "",
+              "output": "Scaled web service to 5 replicas"
+            }
+          ],
+          "options": ["replicas", "load balancing"]
+        }
+      ]
+    },
+    {
+      "title": "B",
+      "content": [
+        {
+          "name": "Backup & Restore",
+          "description": "Scenario: Persist container data and restore in disaster recovery.",
+          "example": [
+            {
+              "command": "docker run --rm -v myvol:/data busybox tar czf /backup/data.tar.gz /data",
+              "input": "",
+              "output": "Volume backed up"
+            }
+          ],
+          "options": ["volumes", "bind mounts"]
+        },
+        {
+          "name": "Best Practices – Images",
+          "description": "Use minimal base images, multi-stage builds, and tag versions explicitly.",
+          "example": [
+            {
+              "command": "FROM alpine:3.19",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["multi-stage", "small base", "versioned tags"]
+        }
+      ]
+    },
+    {
+      "title": "C",
+      "content": [
+        {
+          "name": "Container Security",
+          "description": "Run containers as non-root, drop unnecessary capabilities, use user namespaces.",
+          "example": [
+            {
+              "command": "docker run --user 1000:1000 --cap-drop ALL nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["seccomp", "AppArmor", "non-root user", "read-only filesystem"]
+        },
+        {
+          "name": "CI/CD Scenario",
+          "description": "Build and deploy container images automatically in a pipeline.",
+          "example": [
+            {
+              "command": "docker build -t myapp:${CI_COMMIT_SHA} . && docker push myapp:${CI_COMMIT_SHA}",
+              "input": "",
+              "output": "Image built and pushed"
+            }
+          ],
+          "options": ["automated builds", "registry", "versioning"]
+        }
+      ]
+    },
+    {
+      "title": "D",
+      "content": [
+        {
+          "name": "Debugging Production Container",
+          "description": "Scenario: Container fails in production. Use logs, exec, top, and inspect to troubleshoot.",
+          "example": [
+            {
+              "command": "docker logs -f container_id",
+              "input": "",
+              "output": "Stream logs"
+            }
+          ],
+          "options": ["docker exec", "docker top", "docker inspect"]
+        }
+      ]
+    },
+    {
+      "title": "E",
+      "content": [
+        {
+          "name": "Environment Configuration",
+          "description": "Use ENV variables, .env files, or secrets to configure containers securely.",
+          "example": [
+            {
+              "command": "docker run --env-file .env myapp",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["-e", ".env file", "Docker secrets"]
+        }
+      ]
+    },
+    {
+      "title": "H",
+      "content": [
+        {
+          "name": "High Availability",
+          "description": "Scenario: Ensure services stay online using Swarm replicas, restart policies, and healthchecks.",
+          "example": [
+            {
+              "command": "docker service create --replicas 3 --name web nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["replicas", "restart policies", "healthchecks"]
+        }
+      ]
+    },
+    {
+      "title": "L",
+      "content": [
+        {
+          "name": "Logging & Monitoring",
+          "description": "Use logging drivers, centralized logs, and monitoring tools to observe containers.",
+          "example": [
+            {
+              "command": "docker run --log-driver=syslog nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["syslog", "fluentd", "journald", "ELK stack"]
+        }
+      ]
+    },
+    {
+      "title": "N",
+      "content": [
+        {
+          "name": "Network Isolation",
+          "description": "Use custom networks, bridge, overlay, and firewall rules to isolate containers.",
+          "example": [
+            {
+              "command": "docker network create isolated_net",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["bridge", "overlay", "macvlan"]
+        }
+      ]
+    },
+    {
+      "title": "O",
+      "content": [
+        {
+          "name": "Optimized Builds",
+          "description": "Use caching, minimal layers, and multi-stage builds to reduce image size and build time.",
+          "example": [
+            {
+              "command": "docker build --target builder .",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "R",
+      "content": [
+        {
+          "name": "Resource Limits",
+          "description": "Use CPU, memory, and block I/O limits to prevent containers from overusing host resources.",
+          "example": [
+            {
+              "command": "docker run --memory 512m --cpus 1 nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["--memory", "--cpus", "--blkio-weight"]
+        }
+      ]
+    },
+    {
+      "title": "S",
+      "content": [
+        {
+          "name": "Secrets Management",
+          "description": "Store sensitive information securely using Docker secrets for services.",
+          "example": [
+            {
+              "command": "docker secret create db_password password.txt",
+              "input": "",
+              "output": "Secret created"
+            }
+          ],
+          "options": ["Swarm", "services", "encrypted"]
+        },
+        {
+          "name": "Security Updates",
+          "description": "Regularly update base images and dependencies to patch vulnerabilities.",
+          "example": [
+            {
+              "command": "docker pull ubuntu:22.04",
+              "input": "",
+              "output": "Latest image pulled"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "V",
+      "content": [
+        {
+          "name": "Volume Backup & Restore",
+          "description": "Scenario: Backup production volumes and restore for testing or recovery.",
+          "example": [
+            {
+              "command": "docker run --rm -v prod_vol:/data busybox tar czf /backup/prod.tar.gz /data",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["tar", "rsync", "named volumes"]
+        }
+      ]
+    },
+    {
+      "title": "W",
+      "content": [
+        {
+          "name": "Workload Isolation",
+          "description": "Separate containers for microservices, apply namespaces and resource limits.",
+          "example": [
+            {
+              "command": "docker run --cpus 1 --memory 256m --name microservice1 app",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["namespaces", "cgroups", "network isolation"]
+        }
+      ]
+    },
+    {
+      "title": "X",
+      "content": []
+    },
+    {
+      "title": "Y",
+      "content": []
+    },
+    {
+      "title": "Z",
+      "content": []
+    }
+  ]
+}
