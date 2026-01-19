@@ -1,0 +1,314 @@
+{
+  "title": "Docker Basics",
+  "date": "2026-01-19",
+  "subheading": "In alphabetical order",
+  "tags": ["docker", "containers", "devops", "interview", "basics"],
+  "sections": [
+    {
+      "title": "A",
+      "content": [
+        {
+          "name": "Architecture",
+          "description": "Docker follows a client-server architecture where the Docker Client communicates with the Docker Daemon via REST API.",
+          "example": [
+            {
+              "command": "docker info",
+              "input": "",
+              "output": "Displays client and server information"
+            }
+          ],
+          "options": ["Client", "Daemon", "Registry"]
+        }
+      ]
+    },
+    {
+      "title": "B",
+      "content": [
+        {
+          "name": "Base Image",
+          "description": "A starting image used to build custom Docker images, e.g., ubuntu or alpine.",
+          "example": [
+            {
+              "command": "FROM ubuntu:22.04",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["ubuntu", "alpine", "busybox"]
+        },
+        {
+          "name": "Bind Mounts",
+          "description": "Mount host directories into a container for persistence or sharing data.",
+          "example": [
+            {
+              "command": "docker run -v /host/path:/container/path ubuntu",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["readonly", "rw"]
+        }
+      ]
+    },
+    {
+      "title": "C",
+      "content": [
+        {
+          "name": "Container",
+          "description": "A running instance of a Docker image providing isolated execution.",
+          "example": [
+            {
+              "command": "docker ps -a",
+              "input": "",
+              "output": "Lists all containers"
+            }
+          ],
+          "options": ["-d", "-it", "--rm", "--name"]
+        },
+        {
+          "name": "COPY vs ADD",
+          "description": "COPY copies files from host to image. ADD also supports URLs and tar extraction.",
+          "example": [
+            {
+              "command": "COPY ./app /app",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "D",
+      "content": [
+        {
+          "name": "Dockerfile",
+          "description": "Text file containing instructions to build Docker images layer by layer.",
+          "example": [
+            {
+              "command": "docker build -t myapp .",
+              "input": "",
+              "output": "Image built successfully"
+            }
+          ],
+          "options": ["FROM", "RUN", "COPY", "ADD", "CMD", "ENTRYPOINT", "ENV", "WORKDIR", "EXPOSE"]
+        },
+        {
+          "name": "Docker Hub",
+          "description": "Public registry to store and share Docker images.",
+          "example": [
+            {
+              "command": "docker pull nginx",
+              "input": "",
+              "output": "Downloaded nginx image"
+            }
+          ],
+          "options": ["Public", "Private", "Organizations"]
+        }
+      ]
+    },
+    {
+      "title": "E",
+      "content": [
+        {
+          "name": "ENTRYPOINT",
+          "description": "Specifies a fixed executable for a container; CMD can provide default arguments.",
+          "example": [
+            {
+              "command": "ENTRYPOINT [\"python\", \"app.py\"]",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["exec form", "shell form"]
+        },
+        {
+          "name": "Environment Variables",
+          "description": "Pass configuration values to containers using -e or ENV in Dockerfile.",
+          "example": [
+            {
+              "command": "docker run -e ENV=prod nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": [".env file", "-e flag"]
+        }
+      ]
+    },
+    {
+      "title": "H",
+      "content": [
+        {
+          "name": "Healthcheck",
+          "description": "Defines commands to test container health for orchestration monitoring.",
+          "example": [
+            {
+              "command": "HEALTHCHECK CMD curl -f http://localhost || exit 1",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "I",
+      "content": [
+        {
+          "name": "Image",
+          "description": "Immutable template used to create containers; consists of layers.",
+          "example": [
+            {
+              "command": "docker images",
+              "input": "",
+              "output": "List of images"
+            }
+          ],
+          "options": ["tagging", "layers"]
+        },
+        {
+          "name": "Inspect",
+          "description": "View detailed metadata of images or containers.",
+          "example": [
+            {
+              "command": "docker inspect container_id",
+              "input": "",
+              "output": "JSON metadata"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "L",
+      "content": [
+        {
+          "name": "Logs",
+          "description": "View container logs for debugging purposes.",
+          "example": [
+            {
+              "command": "docker logs container_id",
+              "input": "",
+              "output": "Container logs"
+            }
+          ],
+          "options": ["-f", "--tail"]
+        }
+      ]
+    },
+    {
+      "title": "N",
+      "content": [
+        {
+          "name": "Networking",
+          "description": "Enable communication between containers and host using bridge, host, or none networks.",
+          "example": [
+            {
+              "command": "docker network ls",
+              "input": "",
+              "output": "List networks"
+            }
+          ],
+          "options": ["bridge", "host", "none"]
+        }
+      ]
+    },
+    {
+      "title": "P",
+      "content": [
+        {
+          "name": "Port Mapping",
+          "description": "Expose container ports to the host system using -p or -P.",
+          "example": [
+            {
+              "command": "docker run -p 8080:80 nginx",
+              "input": "",
+              "output": "Port exposed"
+            }
+          ],
+          "options": ["-p", "-P"]
+        }
+      ]
+    },
+    {
+      "title": "R",
+      "content": [
+        {
+          "name": "Run Container",
+          "description": "Create and start a container from an image using docker run.",
+          "example": [
+            {
+              "command": "docker run -it ubuntu bash",
+              "input": "",
+              "output": "Interactive shell"
+            }
+          ],
+          "options": ["-d", "-it", "--rm", "--name"]
+        },
+        {
+          "name": "Restart Policies",
+          "description": "Automatically restart containers based on failure or stop behavior.",
+          "example": [
+            {
+              "command": "docker run --restart always nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["no", "always", "on-failure", "unless-stopped"]
+        }
+      ]
+    },
+    {
+      "title": "V",
+      "content": [
+        {
+          "name": "Volumes",
+          "description": "Persistent storage that exists outside of container lifecycle.",
+          "example": [
+            {
+              "command": "docker volume create data_vol",
+              "input": "",
+              "output": "Volume created"
+            }
+          ],
+          "options": ["bind mount", "named volume"]
+        }
+      ]
+    },
+        {
+      "title": "W",
+      "content": [
+        {
+          "name": "WORKDIR",
+          "description": "Sets the working directory inside the container for subsequent Dockerfile commands.",
+          "example": [
+            {
+              "command": "WORKDIR /app",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "X",
+      "content": []
+    },
+    {
+      "title": "Y",
+      "content": []
+    },
+    {
+      "title": "Z",
+      "content": []
+    }
+
+  ]
+}

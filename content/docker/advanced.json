@@ -1,0 +1,376 @@
+{
+  "title": "Docker Advanced",
+  "date": "2026-01-19",
+  "subheading": "In alphabetical order",
+  "tags": ["docker", "containers", "devops", "interview", "advanced"],
+  "sections": [
+    {
+      "title": "A",
+      "content": [
+        {
+          "name": "Advanced Networking",
+          "description": "Custom networks, overlay networks, and network plugins for complex container communication.",
+          "example": [
+            {
+              "command": "docker network create --driver overlay my_overlay",
+              "input": "",
+              "output": "Overlay network created"
+            }
+          ],
+          "options": ["bridge", "host", "overlay", "macvlan"]
+        },
+        {
+          "name": "Aliases",
+          "description": "Set service or container aliases in networks for easier DNS-based access.",
+          "example": [
+            {
+              "command": "docker network connect --alias db mynet mycontainer",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "B",
+      "content": [
+        {
+          "name": "BuildKit",
+          "description": "Modern image build engine with better caching, parallel builds, and secret management.",
+          "example": [
+            {
+              "command": "DOCKER_BUILDKIT=1 docker build .",
+              "input": "",
+              "output": "BuildKit enabled"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "C",
+      "content": [
+        {
+          "name": "Cgroups",
+          "description": "Linux kernel feature to limit and isolate resource usage (CPU, memory) of containers.",
+          "example": [
+            {
+              "command": "docker run --memory 512m --cpus 1 nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        },
+        {
+          "name": "Container Orchestration",
+          "description": "Coordination of multiple containers across hosts, usually using Compose, Swarm, or Kubernetes.",
+          "example": [
+            {
+              "command": "docker stack deploy -c docker-compose.yml mystack",
+              "input": "",
+              "output": "Stack deployed"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "D",
+      "content": [
+        {
+          "name": "Docker Compose",
+          "description": "Tool to define and run multi-container Docker applications using a YAML file.",
+          "example": [
+            {
+              "command": "docker compose up -d",
+              "input": "",
+              "output": "All services started in detached mode"
+            }
+          ],
+          "options": ["services", "volumes", "networks", "depends_on", "build"]
+        },
+        {
+          "name": "Docker Secrets",
+          "description": "Securely manage sensitive data like passwords and API keys for containers.",
+          "example": [
+            {
+              "command": "docker secret create my_secret secret.txt",
+              "input": "",
+              "output": "Secret created"
+            }
+          ],
+          "options": []
+        },
+        {
+          "name": "Debugging",
+          "description": "Tools and commands to debug containers, networks, and images.",
+          "example": [
+            {
+              "command": "docker inspect container_id",
+              "input": "",
+              "output": "Metadata JSON"
+            }
+          ],
+          "options": ["logs", "events", "exec", "top"]
+        }
+      ]
+    },
+    {
+      "title": "H",
+      "content": [
+        {
+          "name": "Healthcheck",
+          "description": "Advanced healthcheck configurations for production-grade containers.",
+          "example": [
+            {
+              "command": "HEALTHCHECK CMD curl -f http://localhost || exit 1",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["interval", "timeout", "retries", "start-period"]
+        }
+      ]
+    },
+    {
+      "title": "I",
+      "content": [
+        {
+          "name": "Image Optimization",
+          "description": "Reduce image size using multi-stage builds, smaller base images, and removing unnecessary layers.",
+          "example": [
+            {
+              "command": "FROM golang AS builder",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        },
+        {
+          "name": "Image Signing",
+          "description": "Verify integrity and publisher of Docker images using Notary or Docker Content Trust.",
+          "example": [
+            {
+              "command": "export DOCKER_CONTENT_TRUST=1",
+              "input": "",
+              "output": "Content trust enabled"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "L",
+      "content": [
+        {
+          "name": "Logging Drivers",
+          "description": "Control where container logs are sent (json-file, syslog, journald, fluentd, etc.).",
+          "example": [
+            {
+              "command": "docker run --log-driver=syslog nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["json-file", "syslog", "journald", "fluentd"]
+        }
+      ]
+    },
+    {
+      "title": "M",
+      "content": [
+        {
+          "name": "Multi-stage Builds",
+          "description": "Use multiple FROM statements in Dockerfile to produce lean production images.",
+          "example": [
+            {
+              "command": "FROM golang AS builder",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "N",
+      "content": [
+        {
+          "name": "Namespaces",
+          "description": "Linux kernel feature that provides isolation for containers (PID, NET, MNT, UTS, IPC, USER).",
+          "example": [
+            {
+              "command": "lsns",
+              "input": "",
+              "output": "Lists namespaces"
+            }
+          ],
+          "options": ["PID", "NET", "MNT", "UTS", "IPC", "USER"]
+        }
+      ]
+    },
+    {
+      "title": "P",
+      "content": [
+        {
+          "name": "Port Mapping (Advanced)",
+          "description": "Advanced port mapping including published ports, host IP binding, and dynamic port allocation.",
+          "example": [
+            {
+              "command": "docker run -p 127.0.0.1:8080:80 nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["-p hostPort:containerPort", "-P dynamic"]
+        },
+        {
+          "name": "Performance Tuning",
+          "description": "Optimize CPU, memory, and I/O for containers in production.",
+          "example": [
+            {
+              "command": "docker run --cpus 2 --memory 1g nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "R",
+      "content": [
+        {
+          "name": "Rootless Docker",
+          "description": "Run Docker daemon without root privileges for improved security.",
+          "example": [
+            {
+              "command": "dockerd-rootless-setuptool.sh install",
+              "input": "",
+              "output": "Rootless Docker enabled"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "S",
+      "content": [
+        {
+          "name": "Security Best Practices",
+          "description": "Run containers as non-root, drop capabilities, use seccomp and AppArmor profiles.",
+          "example": [
+            {
+              "command": "docker run --cap-drop ALL nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": ["seccomp", "AppArmor", "non-root user"]
+        },
+        {
+          "name": "Swarm Mode",
+          "description": "Docker built-in orchestration for clustering and managing multiple nodes.",
+          "example": [
+            {
+              "command": "docker swarm init",
+              "input": "",
+              "output": "Swarm initialized"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "T",
+      "content": [
+        {
+          "name": "Tmpfs Mounts",
+          "description": "Mount temporary in-memory filesystems inside containers for sensitive data or high-speed operations.",
+          "example": [
+            {
+              "command": "docker run --tmpfs /tmp:rw,size=100m nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "U",
+      "content": [
+        {
+          "name": "User Namespaces",
+          "description": "Map container users to host users for security isolation.",
+          "example": [
+            {
+              "command": "docker run --userns=host nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "V",
+      "content": [
+        {
+          "name": "Volumes (Advanced)",
+          "description": "Advanced volume usage including named volumes, volume drivers, and external volumes.",
+          "example": [
+            {
+              "command": "docker volume create --driver local myvol",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "W",
+      "content": [
+        {
+          "name": "Workload Isolation",
+          "description": "Use namespaces, cgroups, and seccomp to isolate workloads for security and stability.",
+          "example": [
+            {
+              "command": "docker run --security-opt seccomp=default.json nginx",
+              "input": "",
+              "output": ""
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "title": "X",
+      "content": []
+    },
+    {
+      "title": "Y",
+      "content": []
+    },
+    {
+      "title": "Z",
+      "content": []
+    }
+  ]
+}
