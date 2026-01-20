@@ -14,6 +14,13 @@ export default function Page() {
         <Link href="/notes/shell?level=basic">Basics</Link>
         <Link href="/notes/shell?level=advanced">Advanced</Link>
       </div>
+
+      <div>
+        <h2>Docker</h2>
+        <Link href="/notes/docker?level=basic">Basics</Link>
+        <Link href="/notes/docker?level=advanced">Advanced</Link>
+        <Link href="/notes/docker?level=scenario">Scenario</Link>
+      </div>
     </div>
   );
 }
