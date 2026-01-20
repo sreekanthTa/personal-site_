@@ -2,8 +2,35 @@
 .container {
   display: flex;      /* if flex-direction is row, inner divs may collapse */
   flex-direction: column;
+  gap: 1rem;         /* space between inner divs */
+  justify-content: center;  /* center inner divs vertically */
+  align-items: stretch;      /* center inner divs horizontally */
+  /* align-items: s; */
+  margin-bottom: 1px;
+    /* border: 1px solid black; */
+    width: fit-content;
+    margin: 0 auto;
+
 }
 
+
 .container div {
-  display: none;      /* will hide links */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.container div h2 {
+  margin: 0;
+  font-size: 2rem;
+  
+}
+
+
+.container div div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
 }

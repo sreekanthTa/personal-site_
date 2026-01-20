@@ -1,26 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
+import {navigateToNotes} from "./actions/redirect";
 
-export default function Page() {
+export default  function Page() {
+  
   return (
-    <div style={{display:"flex", justifyContent:"center", alignItems:"center", height:"100vh", flexDirection:"column", gap:"1rem"}}>
-      <h2>Linux</h2>
-      <div>
-        <Link href="/notes/linux?level=basic">Basics</Link>
-      </div>
-
-      <div>
-        <h2>Shell</h2>
-        <Link href="/notes/shell?level=basic">Basics</Link>
-        <Link href="/notes/shell?level=advanced">Advanced</Link>
-      </div>
-
-      <div>
-        <h2>Docker</h2>
-        <Link href="/notes/docker?level=basic">Basics</Link>
-        <Link href="/notes/docker?level=advanced">Advanced</Link>
-        <Link href="/notes/docker?level=scenario">Scenario</Link>
-      </div>
+    <div style={{display:"flex", justifyContent:"center", alignItems:"center", height:"100vh", flexDirection:"column", gap:"1rem", background:"black"}}
+    onClick={navigateToNotes}
+    >
+       <h1 style={{color:"white", fontSize:"min(10vw, 10vh)"}}> LEARNING NOTES</h1>
     </div>
   );
 }
