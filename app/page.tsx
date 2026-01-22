@@ -9,5 +9,5 @@ export default  function Page() {
        <h1 style={{color:"white", fontSize:"min(10vw, 10vh)"}}> LEARNING NOTES</h1>
     </button>
   );
-} 
+}  
 

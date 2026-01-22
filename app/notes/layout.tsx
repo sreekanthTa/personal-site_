@@ -6,8 +6,7 @@ interface Props {
 
 export default function NotesLayout({ children }: Props) {
   return (
-    <div style={{ padding: "2rem", border: "1px solid #ddd" }}>
-      <h2>Notes Section</h2>
+    <div style={{  border: "1px solid #ddd" }}>
       {children}
     </div>
   );

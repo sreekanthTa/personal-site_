@@ -16,7 +16,7 @@ describe('Home Page testing', ()=>{
         const headingElement = screen.getByText(/LEARNING NOTES/i)
         expect(headingElement).toBeInTheDocument()
     })
-
+ 
     it('div has onClick handler', async ()=>{
 
         render(<Page/>)
