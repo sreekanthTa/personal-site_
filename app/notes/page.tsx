@@ -1,36 +1,40 @@
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
+import path from "path";
+import fs from "fs";
 
 export default function Page() {
+
+  const dir = path.join(process.cwd(), '/content');
+  const folders = fs.readdirSync(dir, { withFileTypes: true });
+  const folders_to_files_map: Record<string, {name:string, path:string}[]> = {}
+
+    folders.forEach((folder) => {
+    folders_to_files_map[folder.name] = []
+    const specific_folder = path.join(process.cwd(), '/content', folder.name)
+    return fs.readdirSync(specific_folder)?.forEach((file) => {
+       
+      const file_name = file?.replace(".json", "")
+      const file_path = `/notes/${folder.name}?level=${file_name}`
+      folders_to_files_map[folder.name].push({name:file_name, path:file_path})
+    }
+    )
+  })
+
   return (
     <div className={styles.container}>
-      <div className={styles.container_item}>
-      <div className={styles.container_item_title}>Linux</div>
-        <div className={styles.container_item_links}>
-         <Link href="/notes/linux?level=basic">Basics</Link>
+      {Object.entries(folders_to_files_map)?.map(([folder,files])=>{
+         return  <div className={styles.container_item}>
+          <div className={styles.container_item_title}>{folder}</div>
+          <div className={styles.container_item_links}>
+            {files?.map((file: {name:string, path:string}) => {
+              return <Link key={file?.name} href={file?.path}>{file?.name}</Link>
+            })
+            }
+          </div>
         </div>
-      </div>
+      })}
 
-      <div  className={styles.container_item}>
-        <div className={styles.container_item_title}>Shell</div>
-        <div className={styles.container_item_links}>
-
-        <Link href="/notes/shell?level=basic">Basics</Link>
-        <Link href="/notes/shell?level=advanced">Advanced</Link>
-        
-        </div>
-      </div>
-
-      <div  className={styles.container_item}>
-        <div className={styles.container_item_title}>Docker</div>
-        <div className={styles.container_item_links}>
-
-        <Link href="/notes/docker?level=basic">Basics</Link>
-        <Link href="/notes/docker?level=advanced">Advanced</Link>
-        <Link href="/notes/docker?level=scenario">Scenario</Link>
-        </div>
-      </div>
     </div>
   );
 }
