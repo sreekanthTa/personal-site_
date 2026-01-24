@@ -57,7 +57,7 @@ export default function Page() {
           <h2>Skills</h2>
           <div className={styles.skillsGrid}>
             {skills?.map((skill:string)=>{
-        return    <div className={styles.skillCard}>{skill}</div>
+        return    <div key={skill} className={styles.skillCard}>{skill}</div>
  
             })}
              

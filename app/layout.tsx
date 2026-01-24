@@ -28,10 +28,11 @@ export default function RootLayout({
       <head>
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
-        <Nav/>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Nav/>
+
         {children}
       </body>
     </html>
