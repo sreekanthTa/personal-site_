@@ -1,11 +1,12 @@
 /* Page wrapper */
 .page {
   max-width: 900px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 0 1rem;
   font-family: "Inter", sans-serif;
   color: #333;
   line-height: 1.6;
+  /* margin-top: 5rem; */
 }
 
 /* Main title */

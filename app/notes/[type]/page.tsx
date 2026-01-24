@@ -1,5 +1,4 @@
 import { readJson } from "@/app/common/gray_matter";
-import { use } from "react";
 import styles from './page.module.css';
 import path from "path";
 export default async function NotePage({ params, searchParams }: any) {

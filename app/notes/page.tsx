@@ -9,7 +9,7 @@ export default function Page() {
   const folders = fs.readdirSync(dir, { withFileTypes: true });
   const folders_to_files_map: Record<string, {name:string, path:string}[]> = {}
 
-    folders.forEach((folder) => {
+  folders.forEach((folder) => {
     folders_to_files_map[folder.name] = []
     const specific_folder = path.join(process.cwd(), '/content', folder.name)
     return fs.readdirSync(specific_folder)?.forEach((file) => {

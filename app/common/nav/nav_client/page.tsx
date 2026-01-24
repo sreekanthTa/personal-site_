@@ -16,8 +16,8 @@ export default function NavClient({folders_to_files_map={}}: Props){
 
 
     const handleScroll = () =>{
-
-    if(window?.scrollY > 200){
+    
+    if(window?.scrollY > 1){
         setVisible(false)
     }else{
         setVisible(true)
@@ -45,6 +45,5 @@ export default function NavClient({folders_to_files_map={}}: Props){
           </div>
         </div>
       })}
-
     </nav>
 }
