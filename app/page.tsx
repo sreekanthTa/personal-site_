@@ -3,7 +3,7 @@ import styles from './page.module.css';
 export default function Page() {
 
   const skills = ["Next.js", "React.js", "Node.js", "Css","Javascript","Python"]
-  
+  console.log("skills are", skills)
   return (
     <>
       {/* HERO */}

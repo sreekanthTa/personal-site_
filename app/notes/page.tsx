@@ -15,14 +15,16 @@ export default function Page() {
     return fs.readdirSync(specific_folder)?.forEach((file) => {
        
       const file_name = file?.replace(".json", "")
-      const file_path = `/notes/${folder.name}?level=${file_name}`
+      const file_path = `/${folder.name}?level=${file_name}`
       folders_to_files_map[folder.name].push({name:file_name, path:file_path})
     }
     )
   })
 
+  console.log("checkinsdgssdss",folders_to_files_map)
   return (
     <div className={styles.container}>
+      <h1>Hello</h1>
       {Object.entries(folders_to_files_map)?.map(([folder,files])=>{
          return  <div className={styles.container_item}>
           <div className={styles.container_item_title}>{folder}</div>
