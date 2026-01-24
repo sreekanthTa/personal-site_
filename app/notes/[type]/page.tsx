@@ -33,7 +33,7 @@ export default async function NotePage({ params, searchParams }: any) {
 
                 {cmd?.example?.length && (
                   <div className={styles.commandExample}>
-                    <strong>Example:</strong>
+                    <div>Example:</div>
                     <div className={styles.codeBlock}>
                       {
                         cmd?.example?.map((e: any, i: any) => {
@@ -41,18 +41,18 @@ export default async function NotePage({ params, searchParams }: any) {
 
                             {e?.input && (
                               <div>
-                                <span className={styles.codeLabel}>Input:</span> <br />{e?.input}
+                                <div className={styles.codeLabel}>Input:</div> <br />{e?.input}
                               </div>
                             )}
                             {e?.command && (
                               <div>
-                                <span className={styles.codeLabel}>$</span> {e?.command}
+                                <div className={styles.codeLabel}>$</div> {e?.command}
                               </div>
                             )}
 
                             {e?.output && (
                               <div>
-                                <span className={styles.codeLabel}>Output:</span> <br />{e?.output}
+                                <div className={styles.codeLabel}>Output:</div> <br />{e?.output}
                               </div>
                             )}
 
@@ -66,11 +66,11 @@ export default async function NotePage({ params, searchParams }: any) {
 
                 {cmd?.options?.length > 0 && (
                   <div className={styles.commandOptions}>
-                    <strong>Options:</strong>
+                    <div>Options:</div>
                     <ul>
                       {cmd.options.map((opt: any, i: any) => (
                         <li key={i}>
-                          <strong>{opt.option}:</strong> {opt.description}
+                          <div>{opt.option}:</div> {opt.description}
                         </li>
                       ))}
                     </ul>
