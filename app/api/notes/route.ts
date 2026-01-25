@@ -54,14 +54,12 @@ export async function POST(req: Request) {
     systemPrompt += ` ${PORTFOLIO}`;
   } else if (type === 'docker') {
     try {
-
-      // Add Docker-specific content to the system prompt
       systemPrompt += `
         You are a Docker Assistant. Please help with queries in a detailed way!
       `;
-    } catch (error) {
+    } catch (error:any) {
       // Handle any errors that may occur while reading files
-      systemPrompt += `Error reading Docker files: ${error.message}`;
+      systemPrompt += `Error reading Docker files: ${error?.message}`;
     }
   }
 
