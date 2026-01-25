@@ -1,0 +1,34 @@
+.MainContainer{
+    width: 30%;
+    position: fixed;
+    bottom: 5%;
+    right: 2%;
+    max-height: 50%;
+    aspect-ratio: 0.5;
+    font-size: 1.4rem;
+}
+
+.chatIcon{
+            
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    padding: 2rem;
+    background-color: green;
+    border-radius: 40%;
+    cursor: pointer;
+}
+
+.xContainer{
+    width: 100%;
+    background-color: green;
+}
+
+.closeIcon{
+    position: absolute;
+    z-index: 100;
+    font-size: 1.2rem;
+    right: 0%;
+    top: 0%;
+    cursor: pointer;
+}
