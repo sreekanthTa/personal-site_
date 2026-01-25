@@ -87,10 +87,18 @@ export async function POST(req: Request) {
   const readableStream = new ReadableStream({
     async start(controller) {
       try {
-        // Read the stream response and pass it to the client in real-time
         for await (const chunk of streamResponse) {
-          const text = chunk?.content || "";
-          if (text) {
+
+            const content = chunk?.content;
+
+        const text =
+          typeof content === "string"
+            ? content
+            : Array.isArray(content)
+              ? content.map((c) => String(c)).join("")
+              : "";
+
+          if (text?.length>0) {
             controller.enqueue(encoder.encode(text));
           }
         }
