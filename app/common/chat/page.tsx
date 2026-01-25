@@ -21,38 +21,35 @@ type ChatMessage = {
 export default function ChatUI() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [showChat, setShowChat] = useState(false);
-    const [isFullscreen, setIsFullscreen] = useState(false);
-    const chatRef = React.useRef<HTMLDivElement | null>(null)
+  const chatRef = React.useRef<HTMLDivElement | null>(null)
 
 
 
   const params = useParams()
   const pathname = usePathname()
-  const {type} = params
+  const { type } = params
 
 
-  const toggleFullScreen= async () =>{
+  const toggleFullScreen = async () => {
 
-    if(!document?.fullscreenElement){
-      try{
-       await  chatRef.current?.requestFullscreen()
-               setIsFullscreen(true);
+    if (!document?.fullscreenElement) {
+      try {
+        await chatRef.current?.requestFullscreen()
 
-      }catch(err){
+      } catch (err) {
         console.error("Failed to enter fullscreen:", err);
 
       }
-    }else{
+    } else {
       try {
         await document.exitFullscreen();
-        setIsFullscreen(false);
       } catch (err) {
         console.error("Failed to exit fullscreen:", err);
       }
     }
   }
 
- 
+
 
   console.log("checkaingsfsdf", params, pathname)
 
@@ -100,54 +97,51 @@ export default function ChatUI() {
     }
   };
 
-if (!showChat) {
-  return (
-    <div className={styles.chatIcon} onClick={() => setShowChat(true)}>
-      <span className={styles.chatIconText}>Say Hi..</span>
-      <span className={styles.chatIconEmoji}>💬</span>
-    </div>
-  );
-}
+  if (!showChat) {
+    return (
+      <div className={styles.chatIcon} onClick={() => setShowChat(true)}>
+        <span className={styles.chatIconText}>Say Hi..</span>
+        <span className={styles.chatIconEmoji}>💬</span>
+      </div>
+    );
+  }
 
   return (<div className={styles.container}>
-  
-<div className={styles?.chatContainer}   ref={chatRef}>
-         <div className={styles.actionButtons}>
-      <button className={styles.closeIcon} onClick={() => setShowChat(false)}>
-        X
-      </button>
-       <button
-                onClick={() => toggleFullScreen()}
-                 
-              >
-                {"🗖"}
-      </button>
-</div>
-    <MainContainer      className={styles?.mainContainer}
->
 
+      <div className={styles.actionButtons}>
+        <button className={styles.closeIcon} onClick={() => setShowChat(false)}>
+          X
+        </button>
+        <button
+          onClick={() => toggleFullScreen()}
 
+        >
+          {"🗖"}
+        </button>
+      </div>
+      <div ref={chatRef} className={styles.chatContainer}>
 
-      <ChatContainer>
-        <MessageList>
-          {messages.map((m, i) => (
-            <Message
-              key={i}
-              model={{
-                message: m.text,
-                direction: m.sender === "user" ? "outgoing" : "incoming",
-                        position: "single",
+      <MainContainer className={styles?.mainContainer}
+      >
+        <ChatContainer>
+          <MessageList>
+            {messages.map((m, i) => (
+              <Message
+                key={i}
+                model={{
+                  message: m.text,
+                  direction: m.sender === "user" ? "outgoing" : "incoming",
+                  position: "single",
+                }}
+              />
+            ))}
+          </MessageList>
 
-                
-              }}
-            />
-          ))}
-        </MessageList>
+          <MessageInput placeholder="Type..." onSend={handleSend} />
+        </ChatContainer>
+      </MainContainer>
+      </div>
 
-        <MessageInput placeholder="Type..." onSend={handleSend} />
-      </ChatContainer>
-    </MainContainer>
-    </div>
   </div>
 
   );
