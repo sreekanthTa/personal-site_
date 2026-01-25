@@ -48,7 +48,10 @@ export async function POST(req: Request) {
     content: m.text,
   }));
 
-  let systemPrompt = `YOU ARE A TOP EXPERT IN EXPLAINING ANYTHING REALTED TO  ${type}. Behave like a  ${type} Assitant`;
+  let systemPrompt = `YOU ARE A TOP EXPERT IN EXPLAINING ANYTHING REALTED TO  ${type}. Behave like a  ${type} Assitant.
+   Always give short and clear answers... Since i am using free tier... it will consume all tokens if you give huge response
+  
+  `;
 
   if (type === 'portfolio') {
     systemPrompt += ` ${PORTFOLIO}`;

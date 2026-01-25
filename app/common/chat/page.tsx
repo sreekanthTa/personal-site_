@@ -54,11 +54,9 @@ export default function ChatUI() {
   console.log("checkaingsfsdf", params, pathname)
 
   const handleSend = async (text: string) => {
-    // 1️⃣ Build updated history locally
     const userMessage: ChatMessage = { sender: "user", text };
     const updatedMessages = [...messages, userMessage];
 
-    // 2️⃣ Optimistically update UI
     setMessages([...updatedMessages, { sender: "bot", text: "" }]);
 
     try {
@@ -67,7 +65,7 @@ export default function ChatUI() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: text,
-          history: updatedMessages, // ✅ send history
+          history: updatedMessages?.slice(0,3), //For Temporary to reduce token usage
           type
         }),
       });
