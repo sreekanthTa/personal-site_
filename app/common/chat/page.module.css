@@ -1,4 +1,4 @@
-.container{
+.chatContainer{
     width: 30%;
     position: fixed;
     bottom:7%;
@@ -9,6 +9,10 @@
     border-radius: 5px;
     /* overflow: hidden; */
     box-shadow: rgb(0 0 0) 0px 0px 25px -9px;
+}
+
+.mainContainer{
+    font-size: 1.4rem;
 }
 
 .actionButtons{

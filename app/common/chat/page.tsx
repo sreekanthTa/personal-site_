@@ -22,7 +22,7 @@ export default function ChatUI() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [showChat, setShowChat] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const chatRef = React.useRef<Intrinisc | null>(null)
+    const chatRef = React.useRef<HTMLDivElement | null>(null)
 
 
 
@@ -110,6 +110,8 @@ if (!showChat) {
 }
 
   return (<div className={styles.container}>
+  
+<div className={styles?.chatContainer}   ref={chatRef}>
          <div className={styles.actionButtons}>
       <button className={styles.closeIcon} onClick={() => setShowChat(false)}>
         X
@@ -121,8 +123,7 @@ if (!showChat) {
                 {"🗖"}
       </button>
 </div>
-<div className={styles?.mainContainer}   ref={chatRef}>
-    <MainContainer     
+    <MainContainer      className={styles?.mainContainer}
 >
 
 
