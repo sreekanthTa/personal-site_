@@ -65,7 +65,7 @@ export default function ChatUI() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: text,
-          history: updatedMessages?.slice(0,3), //For Temporary to reduce token usage
+          history: updatedMessages?.slice(0,1), //For Temporary to reduce token usage
           type
         }),
       });
