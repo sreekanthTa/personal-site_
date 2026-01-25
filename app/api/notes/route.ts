@@ -73,6 +73,7 @@ export async function POST(req: Request) {
     configuration: {
       baseURL: "https://api.groq.com/openai/v1",  // Grok's API base URL
     },
+    maxTokens: 250
   });
 
   // Build final messages
