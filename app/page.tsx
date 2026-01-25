@@ -86,7 +86,7 @@ export default async function Page() {
           </div>
         </div>
       </section>
-        <ChatUI />
+        <ChatUI/>
 
     </>
   );

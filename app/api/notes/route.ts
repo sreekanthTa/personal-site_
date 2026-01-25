@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { ChatOpenAI } from "@langchain/openai";
 import { PORTFOLIO } from "@/prompts/portfolio";
+import fs from 'fs';
 
+import path from "path";
 
 
 
@@ -37,9 +39,8 @@ import { PORTFOLIO } from "@/prompts/portfolio";
 // }
 
  
-
 export async function POST(req: Request) {
-  const { message, history } = await req.json();
+  const { message, history, type = 'portfolio' } = await req.json();
 
   // Convert chat history to Grok format
   const formattedHistory = history.map((m: any) => ({
@@ -47,18 +48,35 @@ export async function POST(req: Request) {
     content: m.text,
   }));
 
+  let systemPrompt = `YOU ARE A TOP EXPERT IN EXPLAINING ANYTHING REALTED TO  ${type}. Behave like a  ${type} Assitant`;
+
+  if (type === 'portfolio') {
+    systemPrompt += ` ${PORTFOLIO}`;
+  } else if (type === 'docker') {
+    try {
+
+      // Add Docker-specific content to the system prompt
+      systemPrompt += `
+        You are a Docker Assistant. Please help with queries in a detailed way!
+      `;
+    } catch (error) {
+      // Handle any errors that may occur while reading files
+      systemPrompt += `Error reading Docker files: ${error.message}`;
+    }
+  }
+
   // Initialize LangChain model with Grok
   const chatModel = new ChatOpenAI({
     modelName: "llama-3.3-70b-versatile",
     apiKey: process.env.GROK_API_KEY!,
     configuration: {
-      baseURL: "https://api.groq.com/openai/v1",
+      baseURL: "https://api.groq.com/openai/v1",  // Grok's API base URL
     },
   });
 
   // Build final messages
   const messages = [
-    { role: "system", content: PORTFOLIO },
+    { role: "system", content: systemPrompt },
     ...formattedHistory,
     { role: "user", content: message },
   ];
@@ -68,9 +86,10 @@ export async function POST(req: Request) {
 
   const encoder = new TextEncoder();
 
-  const readable_stream = new ReadableStream({
+  const readableStream = new ReadableStream({
     async start(controller) {
       try {
+        // Read the stream response and pass it to the client in real-time
         for await (const chunk of streamResponse) {
           const text = chunk?.content || "";
           if (text) {
@@ -85,9 +104,9 @@ export async function POST(req: Request) {
     },
   });
 
-  return new NextResponse(readable_stream, {
+  return new NextResponse(readableStream, {
     headers: {
-      "Content-Type": "text/event-stream",
+      "Content-Type": "text/event-stream",  // This is necessary for streaming
       "Cache-Control": "no-cache",
       "Connection": "keep-alive",
     },

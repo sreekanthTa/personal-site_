@@ -1,23 +1,67 @@
-.MainContainer{
+.container{
     width: 30%;
     position: fixed;
-    bottom: 5%;
+    bottom:7%;
     right: 2%;
     max-height: 50%;
     aspect-ratio: 0.5;
     font-size: 1.4rem;
+    border-radius: 5px;
+    /* overflow: hidden; */
+    box-shadow: rgb(0 0 0) 0px 0px 25px -9px;
 }
 
-.chatIcon{
-            
-    position: fixed;
-    bottom: 2%;
-    right: 2%;
-    padding: 2rem;
-    background-color: green;
-    border-radius: 40%;
-    cursor: pointer;
+.actionButtons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    background-color: white;
+    padding: 0.5rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
 }
+.cs-message-input{
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+.actionButtons button{
+    cursor: pointer;
+    font-size: 1.8rem;
+}
+.chatIcon {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chatIcon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.chatIconText {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chatIconEmoji {
+  font-size: 24px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+ 
 
 .xContainer{
     width: 100%;
@@ -25,10 +69,14 @@
 }
 
 .closeIcon{
-    position: absolute;
+    /* position: absolute;
     z-index: 100;
     font-size: 1.2rem;
     right: 0%;
     top: 0%;
-    cursor: pointer;
+    cursor: pointer; */
+}
+
+.mainContainer{
+    font-size: 1.6rem;
 }

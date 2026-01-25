@@ -9,8 +9,9 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
+import { useParams, usePathname } from "next/navigation";
 
 type ChatMessage = {
   sender: "user" | "bot";
@@ -20,6 +21,40 @@ type ChatMessage = {
 export default function ChatUI() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [showChat, setShowChat] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const chatRef = React.useRef(null)
+
+
+
+  const params = useParams()
+  const pathname = usePathname()
+  const {type} = params
+
+
+  const toggleFullScreen= async () =>{
+
+    if(!document?.fullscreenElement){
+      try{
+       await  chatRef.current.requestFullscreen()
+               setIsFullscreen(true);
+
+      }catch(err){
+        console.error("Failed to enter fullscreen:", err);
+
+      }
+    }else{
+      try {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      } catch (err) {
+        console.error("Failed to exit fullscreen:", err);
+      }
+    }
+  }
+
+ 
+
+  console.log("checkaingsfsdf", params, pathname)
 
   const handleSend = async (text: string) => {
     // 1️⃣ Build updated history locally
@@ -36,6 +71,7 @@ export default function ChatUI() {
         body: JSON.stringify({
           message: text,
           history: updatedMessages, // ✅ send history
+          type
         }),
       });
 
@@ -64,19 +100,31 @@ export default function ChatUI() {
     }
   };
 
-  if (!showChat) {
-    return (
-      <div className={styles.chatIcon} onClick={() => setShowChat(true)}>
-        Chat
-      </div>
-    );
-  }
-
+if (!showChat) {
   return (
-    <MainContainer className={styles.MainContainer}>
-      <div className={styles.closeIcon} onClick={() => setShowChat(false)}>
+    <div className={styles.chatIcon} onClick={() => setShowChat(true)}>
+      <span className={styles.chatIconText}>Say Hi..</span>
+      <span className={styles.chatIconEmoji}>💬</span>
+    </div>
+  );
+}
+
+  return (<div className={styles.container}>
+         <div className={styles.actionButtons}>
+      <button className={styles.closeIcon} onClick={() => setShowChat(false)}>
         X
-      </div>
+      </button>
+       <button
+                onClick={() => toggleFullScreen()}
+                 
+              >
+                {"🗖"}
+      </button>
+</div>
+    <MainContainer     className={styles?.mainContainer}   ref={chatRef}
+>
+
+
 
       <ChatContainer>
         <MessageList>
@@ -97,5 +145,7 @@ export default function ChatUI() {
         <MessageInput placeholder="Type..." onSend={handleSend} />
       </ChatContainer>
     </MainContainer>
+  </div>
+
   );
 }
