@@ -22,7 +22,7 @@ export default function ChatUI() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [showChat, setShowChat] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const chatRef = React.useRef(null)
+    const chatRef = React.useRef<HTMLDivElement | null>(null)
 
 
 
@@ -35,7 +35,7 @@ export default function ChatUI() {
 
     if(!document?.fullscreenElement){
       try{
-       await  chatRef.current.requestFullscreen()
+       await  chatRef.current?.requestFullscreen()
                setIsFullscreen(true);
 
       }catch(err){
