@@ -48,10 +48,11 @@ export async function POST(req: Request) {
     content: m.text,
   }));
 
-  let systemPrompt = `YOU ARE A TOP EXPERT IN EXPLAINING ANYTHING REALTED TO  ${type}. Behave like a  ${type} Assitant.
-   Always give short and clear answers... Since i am using free tier... it will consume all tokens if you give huge response
-  
-  `;
+  let systemPrompt = `YOU ARE A TOP EXPERT IN EXPLAINING ANYTHING REALTED TO ${type}. Behave like a ${type} Assitant.
+                      Always give short and clear answers... Since i am using free tier... it will consume all tokens if you give huge response.
+                      Answer in 2-3 sentences only.
+
+                    `;
 
   if (type === 'portfolio') {
     systemPrompt += ` ${PORTFOLIO}`;
@@ -73,7 +74,11 @@ export async function POST(req: Request) {
     configuration: {
       baseURL: "https://api.groq.com/openai/v1",  // Grok's API base URL
     },
-    maxTokens: 250
+    maxTokens: 250,
+    temperature: 0.2, //=> lower = short and accuret if we increate itmight add furether verbose texts to explain along with answer
+    frequencyPenalty: 0.5, // => If it is low, it will remove repeiteite words, if increaets it keesps
+
+    
   });
 
   // Build final messages
