@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import CustomLoader from "@/app/common/loader/page";
 import { notFound } from "next/navigation";
 import fs from "fs";
+import ChatUI from "@/app/common/chat/page";
 
 export async function generateMetadata({ params, searchParams }: any) {
 
@@ -114,6 +115,7 @@ export default async function NotePage({ params, searchParams }: any) {
 
 
     return (
+      <>
       <div className={styles.page}>
         <Suspense fallback={<CustomLoader />}>
 
@@ -121,6 +123,8 @@ export default async function NotePage({ params, searchParams }: any) {
         </Suspense>
 
       </div>
+      <ChatUI/>
+      </>
     );
   }
   catch (err) {
