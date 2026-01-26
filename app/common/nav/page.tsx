@@ -7,8 +7,10 @@ export default function Nav() {
 
   const dir = path.join(process.cwd(), '/content');
   const folders = fs.readdirSync(dir, { withFileTypes: true });
-  const folders_to_files_map: Record<string, {name:string, path:string}[]> = {}
-
+  const folders_to_files_map: Record<string, {name?:string, path:string}[]> = {}
+      
+    folders_to_files_map["home"]=[{path:"/"}]
+    
     folders.forEach((folder) => {
     folders_to_files_map[folder.name] = []
     const specific_folder = path.join(process.cwd(), '/content', folder.name)
@@ -20,6 +22,7 @@ export default function Nav() {
     }
     )
   })
+
 
   return <NavClient folders_to_files_map={folders_to_files_map}/>
 }

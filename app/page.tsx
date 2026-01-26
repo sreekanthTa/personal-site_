@@ -1,14 +1,13 @@
 import ChatUI from './common/chat/page';
 import styles from './page.module.css';
 
+
+
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
 
   const skills = ["Next.js", "React.js", "Node.js", "Css","Javascript","Python"]
-  console.log("skills are", skills)
-
-
- 
-   
 
   return (
     <>

@@ -117,7 +117,7 @@ export default async function NotePage({ params, searchParams }: any) {
     return (
       <>
       <div className={styles.page}>
-        <Suspense fallback={<CustomLoader />}>
+        <Suspense fallback={<CustomLoader/>}>
 
           <RenderData type={type} level={level} />
         </Suspense>
