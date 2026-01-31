@@ -15,6 +15,7 @@
     "@chatscope/chat-ui-kit-react": "^2.1.1",
     "@langchain/core": "^1.1.17",
     "@langchain/openai": "^1.2.3",
+    "@mlc-ai/web-llm": "^0.2.80",
     "g4f": "^1.4.6",
     "gray-matter": "^4.0.3",
     "groq-sdk": "^0.37.0",

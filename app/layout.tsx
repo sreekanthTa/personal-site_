@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./common/nav/page";
 import ChatUI from "./common/chat/page";
+import WebLLMProvider from "./common/providers/webllm"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Nav/>
-        {children}
+        <WebLLMProvider>
+
+           {children}
+
+        </WebLLMProvider>
           
       </body>
     </html>
