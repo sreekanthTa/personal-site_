@@ -40,7 +40,7 @@ import path from "path";
 
  
 export async function POST(req: Request) {
-  const { message, history, type = 'portfolio' } = await req.json();
+  const { message, history, type = 'PORTFOLIO' } = await req.json();
 
   // Convert chat history to Grok format
   const formattedHistory = history.map((m: any) => ({
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
 
                     `;
 
-  if (type === 'portfolio') {
+  if (type === 'PORTFOLIO') {
     systemPrompt += ` ${PORTFOLIO}`;
   } else if (type === 'docker') {
     try {

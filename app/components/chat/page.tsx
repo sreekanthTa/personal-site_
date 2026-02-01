@@ -25,17 +25,15 @@ type ChatUIProps = {
   // required send handler (parent should update `messages` and manage streaming)
   handleSend: (
     text: string,
-    history: ChatMessage[],
   ) => Promise<string | AsyncGenerator<string, string, unknown> | void>;
   progress: number
 };
 
-export default function ChatUI({ messages, showChat, setShowChat, handleSend, progress }: ChatUIProps) {
+export default function ChatUI({messages, showChat, setShowChat, handleSend, progress }: ChatUIProps) {
   const chatRef = React.useRef<HTMLDivElement | null>(null)
 
   const params = useParams()
-  const pathname = usePathname()
-  const { type } = params
+ 
 
 
   const toggleFullScreen = async () => {
@@ -60,11 +58,10 @@ export default function ChatUI({ messages, showChat, setShowChat, handleSend, pr
 
 
   const doSend = async (text: string) => {
-    const userMessage: ChatMessage = { sender: "user", text };
-    const updatedMessages = [...messages, userMessage];
+    
 
     try {
-      await handleSend(text, updatedMessages);
+      await handleSend(text);
     } catch (error) {
       console.error("handleSend error:", error);
     }

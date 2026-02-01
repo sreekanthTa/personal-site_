@@ -1,78 +1,12 @@
-'use client';
 
-import ChatUI from './components/chat/page';
+import ChatContainer from './components/chat/client';
 import styles from './page.module.css';
-import  { useState } from 'react';
 
-const chatUI = () => {
-  
-}
-
-export default function Page() {
-  type ChatMessage = { sender: "user" | "bot"; text: string };
+export const dynamic  = 'force-dynamic';
+ 
+export default  function Page() {
 
   const skills = ["Next.js", "React.js", "Node.js", "Css","Javascript","Python"];
-
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [showChat, setShowChat] = useState(false);
-
-  
-  const handleSend = async (text: string, history: ChatMessage[]) => {
-    
-    setMessages((prev) => [...prev, { sender: 'user', text }, { sender: 'bot', text: '' }]);
-
-    try {
-      const response = await fetch("/api/ai", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: text,
-          history: history,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`API error: ${response.statusText}`);
-      }
-
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder();
-      let botText = '';
-
-      if (!reader) {
-        throw new Error('No response body');
-      }
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value, { stream: true });
-        botText += chunk;
-
-        // update last bot message
-        setMessages((prev) => {
-          const copy = [...prev];
-          // find last bot message index
-          const lastBotIndex = [...copy].reverse().findIndex((m) => m.sender === 'bot');
-          const idx = lastBotIndex === -1 ? copy.length - 1 : copy.length - 1 - lastBotIndex;
-          copy[idx] = { sender: 'bot', text: botText };
-          return copy;
-        });
-      }
-    } catch (err) {
-      console.error('Error streaming from model:', err);
-      setMessages((prev) => {
-        const copy = [...prev];
-        const lastBotIndex = [...copy].reverse().findIndex((m) => m.sender === 'bot');
-        const idx = lastBotIndex === -1 ? copy.length - 1 : copy.length - 1 - lastBotIndex;
-        copy[idx] = { sender: 'bot', text: 'Error: failed to get response.' };
-        return copy;
-      });
-    }
-  };
 
   return (
     <>
@@ -153,11 +87,9 @@ export default function Page() {
           </div>
         </div>
       </section>
-        <ChatUI
-          handleSend={handleSend}
-          messages={messages}
-          showChat={showChat}
-          setShowChat={setShowChat}
+        <ChatContainer
+         SYSTEMPROMPTTYPE= "PORTFOLIO"
+         apiPath="notes"
         />
 
     </>
