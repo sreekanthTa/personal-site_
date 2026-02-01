@@ -6,6 +6,7 @@ import CustomLoader from "@/app/components/loader/page";
 import { notFound } from "next/navigation";
 import fs from "fs";
 import ChatUI from "@/app/components/chat/page";
+import ChatContainer from "@/app/components/chat/client";
 
 export async function generateMetadata({ params, searchParams }: any) {
 
@@ -123,7 +124,10 @@ export default async function NotePage({ params, searchParams }: any) {
         </Suspense>
 
       </div>
-      <ChatUI/>
+      <ChatContainer
+        SYSTEMPROMPTTYPE= {type}
+        apiPath="notes"
+       />
       </>
     );
   }
