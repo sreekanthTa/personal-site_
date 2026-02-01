@@ -5,7 +5,7 @@ import React , {useEffect, useState} from "react";
 import styles from "./page.module.css";
 
 
-export const WebLLM = () => {
+export default function WebLLM() {
 
   const [progress, setProgress] = useState(0);
   const [engine, setEngine] = useState<any>(null);
@@ -32,7 +32,7 @@ export const WebLLM = () => {
 
     }
 
-    navigator.storage.estimate().then(e => console.log("Limit (MB):", e.quota / 1024 / 1024));
+//     navigator.storage.estimate().then((e:any) => console.log("Limit (MB):", e?.quota / 1024 / 1024));
 
 
 

@@ -29,7 +29,7 @@ export default function WebLLMProvider({ children }: { children: React.ReactNode
       worker,
       "Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC", // Or your preferred model
       {
-        initProgressCallback: (p) => {
+        initProgressCallback: (p:any) => {
             console.log("progress is",p  )
             setProgress(p.progress)},
       }
