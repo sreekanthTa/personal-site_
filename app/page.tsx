@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import ChatUI from './common/chat/page';
+import ChatUI from './components/chat/page';
 import styles from './page.module.css';
-import React, { useState } from 'react';
-import { useWebLLM } from './common/providers/webllm';
+import  { useState } from 'react';
 
-export const dynamic = "force-dynamic";
+const chatUI = () => {
+  
+}
 
 export default function Page() {
   type ChatMessage = { sender: "user" | "bot"; text: string };
@@ -15,36 +16,42 @@ export default function Page() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [showChat, setShowChat] = useState(false);
 
-  const { isLoaded, loadModel, chatCompletionsStream, progress } = useWebLLM();
-
-  React.useEffect(() => {
-    console.log('[page.tsx] Progress changed:', progress, 'isLoaded:', isLoaded);
-  }, [progress, isLoaded]);
-
-  React.useEffect(() => {
-    // Auto-load when the chat is opened (or on mount if `showChat` is true)
-    if (showChat && !isLoaded) {
-      loadModel().catch((err) => console.error('Failed to load model on chat open:', err));
-    }
-  }, [showChat, isLoaded, loadModel]);
   
-  // Parent-managed send handler: updates messages state and streams model replies
   const handleSend = async (text: string, history: ChatMessage[]) => {
-    // append user message + bot placeholder; parent message state is controlled here
+    
     setMessages((prev) => [...prev, { sender: 'user', text }, { sender: 'bot', text: '' }]);
 
-    const updatedMessages = [...history, { sender: 'user', text }];
-
-    const modelMessages = [
-      { role: 'system', content: 'You are a helpful AI assistant.' },
-      ...updatedMessages.map((m) => ({ role: m.sender === 'user' ? 'user' : 'assistant', content: m.text })),
-    ]
     try {
-      const stream = await chatCompletionsStream(modelMessages as any);
-      console.log("stream message is", stream)
+      const response = await fetch("/api/ai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: text,
+          history: history,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.statusText}`);
+      }
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
       let botText = '';
-      for await (const chunk of stream) {
+
+      if (!reader) {
+        throw new Error('No response body');
+      }
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
         botText += chunk;
+
         // update last bot message
         setMessages((prev) => {
           const copy = [...prev];
@@ -92,10 +99,7 @@ export default function Page() {
               </a>
             </div>
           </div>
-     <button onClick={() => {
-       console.log('[page.tsx] Load Model button clicked');
-       loadModel().catch((err) => console.error('[page.tsx] Error loading model:', err));
-     }}>Load Model</button>
+
 
           <div className={styles.card}>
             <div className={styles.profileCircle}>
@@ -154,7 +158,6 @@ export default function Page() {
           messages={messages}
           showChat={showChat}
           setShowChat={setShowChat}
-          progress={Math.round(progress * 100)}
         />
 
     </>

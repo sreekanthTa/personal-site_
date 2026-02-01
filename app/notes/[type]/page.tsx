@@ -1,11 +1,11 @@
-import { readJson } from "@/app/common/gray_matter";
+import { readJson } from "@/app/components/gray_matter";
 import styles from './page.module.css';
 import path from "path";
 import { Suspense } from "react";
-import CustomLoader from "@/app/common/loader/page";
+import CustomLoader from "@/app/components/loader/page";
 import { notFound } from "next/navigation";
 import fs from "fs";
-import ChatUI from "@/app/common/chat/page";
+import ChatUI from "@/app/components/chat/page";
 
 export async function generateMetadata({ params, searchParams }: any) {
 
