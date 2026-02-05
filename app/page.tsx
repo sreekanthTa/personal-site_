@@ -1,6 +1,7 @@
 
 import ChatContainer from './components/chat/client';
 import styles from './page.module.css';
+import { emailFormHandler } from '../actions/redirect';
 
 export const dynamic  = 'force-dynamic';
  
@@ -8,6 +9,11 @@ export default  function Page() {
 
   const skills = ["Next.js", "React.js", "Node.js", "Css","Javascript","Python"];
 
+  const actionHandler = async (formData: FormData) => {
+    'use server';
+    await emailFormHandler(formData);
+  }
+ 
   return (
     <>
       
@@ -32,6 +38,7 @@ export default  function Page() {
                 Contact Me
               </a>
             </div>
+           
           </div>
 
 
@@ -77,14 +84,22 @@ export default  function Page() {
         <div className={styles.sectionContainer}>
           <h2>Contact Me</h2>
           <p>Feel free to reach out for collaborations or job opportunities.</p>
-          <div className={styles.contactButtons}>
-            <a className={styles.primaryBtn} href="mailto:youremail@example.com">
-              Email Me
-            </a>
-            <a className={styles.secondaryBtn} href="#home">
-              Back to Top
-            </a>
-          </div>
+            <div className={styles?.formContainer}>
+              <form className={styles.form} action={actionHandler}>
+                <div>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" name="email" placeholder='Enter Your email' required/>
+</div>
+
+<div>
+                <label htmlFor='message'>Message</label>
+                <textarea id="message" placeholder='Enter Your Message' name='message' minLength={10} rows={2} required/>
+</div>
+
+                <button  type='submit'> Sent</button>
+              </form>
+            </div>
+            
         </div>
       </section>
         <ChatContainer

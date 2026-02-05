@@ -104,27 +104,7 @@
   opacity: 0.9;
 }
 
-/* ===== SECTIONS ===== */
-.sectionContainer {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 0;
-  text-align: center;
-}
 
-.sectionContainer h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.sectionContainer p {
-  font-size: 18px;
-  line-height: 1.7;
-  max-width: 800px;
-  margin: 0 auto 30px auto;
-  opacity: 0.9;
-}
 
 /* ===== PROJECTS ===== */
 .projectGrid {
@@ -199,4 +179,80 @@
   .skillsGrid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===== SECTIONS ===== */
+.sectionContainer {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionContainer h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.sectionContainer p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  opacity: 0.9;
+}
+
+
+.formContainer{
+ display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 50%;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form div{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form div label{
+  font-weight: 600;
+  font-size: 2rem;
+
+}
+
+.form div input, .form div textarea{
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1.6rem;
+}
+
+.form button{
+  padding: 1.2rem 2.4rem;
+  border-radius: 10px;
+  background: #0b2f6a;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  min-width: fit-content;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
