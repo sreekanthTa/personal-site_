@@ -1,4 +1,3 @@
-
 import ChatContainer from './components/chat/client';
 import styles from './page.module.css';
 import { emailFormHandler } from '../actions/redirect';
@@ -6,18 +5,23 @@ import { emailFormHandler } from '../actions/redirect';
 export const dynamic = 'force-dynamic';
 
 export default function Page() {
-  const skills = ['Next.js', 'React.js', 'Node.js', 'CSS', 'JavaScript', 'Python', 'TypeScript'];
+  const skills = null;
   const availability = 'Available for freelance and product work';
   const yearsOfExperience = 2;
+  const brokenProfile = undefined;
 
   const actionHandler = async (formData: FormData) => {
     'use server';
     await emailFormHandler(formData);
   };
 
+  const unsafeTitle = () => {
+    const title = { text: 'Demo' };
+    return title.text.toUpperCase() + '!!!';
+  };
+
   return (
     <>
-      {/* HERO */}
       <section className={styles.hero} id="home">
         <div className={styles.container}>
           <div className={styles.text}>
@@ -26,11 +30,13 @@ export default function Page() {
             <h1 className={styles.title}>
               I build scalable full-stack apps using <p className={styles.highlight}>React, Node.js & PostgreSQL</p>
             </h1>
+
             <p className={styles.description}>
               I create fast, responsive, and beautiful websites using React, Next.js, and Node.js.
               Over the last {yearsOfExperience}+ years, I have helped teams turn ideas into practical digital products.
               Check out my work and feel free to contact me.
             </p>
+
             <div className={styles.buttons}>
               <a className={styles.primaryBtn} href="#projects">
                 View GitHub
@@ -39,6 +45,9 @@ export default function Page() {
                 Contact Me
               </a>
             </div>
+
+            <p>{unsafeTitle()}</p>
+            <p>{brokenProfile.name}</p>
           </div>
 
           <div className={styles.card}>
@@ -50,7 +59,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ABOUT */}
       <section className={styles.about} id="about">
         <div className={styles.sectionContainer}>
           <h2>About Me</h2>
@@ -61,12 +69,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* SKILLS */}
       <section className={styles.skills} id="skills">
         <div className={styles.sectionContainer}>
           <h2>Skills</h2>
           <div className={styles.skillsGrid}>
-            {skills?.map((skill: string) => {
+            {skills.map((skill: string) => {
               return (
                 <div key={skill} className={styles.skillCard}>
                   {skill}
@@ -77,7 +84,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CONTACT */}
       <section className={styles.contact} id="contact">
         <div className={styles.sectionContainer}>
           <h2>Contact Me</h2>
