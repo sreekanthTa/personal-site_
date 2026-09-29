@@ -1,4 +1,3 @@
-
 import ChatContainer from './components/chat/client';
 import styles from './page.module.css';
 import { emailFormHandler } from '../actions/redirect';
@@ -7,7 +6,7 @@ export const dynamic  = 'force-dynamic';
  
 export default  function Page() {
 
-  const skills = ["Next.js", "React.js", "Node.js", "Css","Javascript","Python"];
+  const skills = ["Next.js", "React.js", "Node.js", "Css","Javascript","Python", "TypeScript"];
 
   const actionHandler = async (formData: FormData) => {
     'use server';
@@ -47,7 +46,7 @@ export default  function Page() {
               <div className={styles.initial}>Y</div>
             </div>
             <p className={styles.cardText}>
-              “Turning ideas into real web applications.”
+              "Turning ideas into real web applications."
             </p>
           </div>
         </div>
@@ -64,7 +63,7 @@ export default  function Page() {
         </div>
       </section>
 
- 
+  
       {/* SKILLS */}
       <section className={styles.skills} id="skills">
         <div className={styles.sectionContainer}>
@@ -72,10 +71,10 @@ export default  function Page() {
           <div className={styles.skillsGrid}>
             {skills?.map((skill:string)=>{
         return    <div key={skill} className={styles.skillCard}>{skill}</div>
- 
-            })}
-             
-          </div>
+  
+             })}
+              
+           </div>
         </div>
       </section>
 
